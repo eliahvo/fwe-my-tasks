@@ -2,28 +2,41 @@ version: '3.8'
 
 services:
   mariadb:
-      image: mariadb:latest
-      volumes:
-        - data:/var/lib/mysql
-      restart: always
-      env_file:
-          - .env
+    image: mariadb:latest
+    volumes:
+      - data:/var/lib/mysql
+    restart: always
+    env_file:
+      - .env
 
   backend:
-      ##restart: always
-      image: node:14
-      working_dir: /usr/src/app
-      volumes:
-        - ./app:/usr/src/app
-      environment: 
-          - PORT=3000
-      depends_on:
-          - mariadb
-      ports:
-          - "3000:3000"
-      env_file:
-          - .env
-      command: /bin/bash -c "npm install && npm run start"
+    ##restart: always
+    image: node:14
+    container_name: backend
+    working_dir: /usr/src/app/backend
+    volumes:
+      - ./app/backend:/usr/src/app/backend
+    environment: 
+      - PORT=3000
+    depends_on:
+      - mariadb
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    command: /bin/bash -c "npm install && npm run start"
+  
+  frontend:
+    image: node:14
+    container_name: frontend
+    working_dir: /var/app/frontend
+    ports:
+      - 80:80
+    stdin_open: true
+    volumes:
+      - "./app/frontend:/var/app/frontend"
+    command: /bin/bash -c "npm install && npm run start"
+
 
 volumes:
   data:
