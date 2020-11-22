@@ -1,19 +1,17 @@
-import React, {useState} from "react";
-import { Message, MessageType } from "./components/Message";
-import "./styles.css";
+import React from "react";
+import { GlobalStyle } from "./components/GlobalStyle";
+import { Layout } from "./components/Layout";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
+import { DashboardPage } from "./pages/Dashboard/DashboardPage";
 
 export const App = () => {
-  let [count, setCount] = useState(0);
-
-  const onButtonClickListener = () => {
-    console.log("clicked");
-    setCount(count + 1);
-  };
-
   return (
-    <div className="container">
-      <Message type={MessageType.INFO}>Hello World</Message>
-      <p>Button was clicked {count} times</p>
-      <button onClick={onButtonClickListener}>Click me!</button>
-    </div>);
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Layout>
+        <DashboardPage />
+      </Layout>
+    </ThemeProvider>
+  );
 };
