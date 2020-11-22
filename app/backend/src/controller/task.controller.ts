@@ -10,7 +10,8 @@ import { Task } from "../entity/Task";
  */
 export const getTasks = async (_: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
-  const tasks = await taskRepository.find();
+  const tasks = await taskRepository.find({relations: ['labels', 'trackings']});
+  
   res.status(200).send({
     data: tasks
   });
@@ -27,7 +28,7 @@ export const getTask = async (req: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
 
   try {
-    const task = await taskRepository.findOneOrFail(taskId);
+    const task = await taskRepository.findOneOrFail(taskId, {relations: ['labels', 'trackings']});
     res.status(200).send({
       data: task
     });
