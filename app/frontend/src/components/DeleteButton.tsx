@@ -13,6 +13,11 @@ export const DeleteButton = (
     border-radius: 50%;
     float: right;
     background-color: ${(props) => props.theme.colors.primary};
+    &:hover,
+    &:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
   `;
   return (
     <StyledButton {...props}>

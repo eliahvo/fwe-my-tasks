@@ -6,3 +6,9 @@ items:
   tracking2:
     description: Tracking2
     task: '@task2'
+  tracking3:
+    description: Tracking3
+    task: '@task3'
+  tracking4:
+    description: Tracking4
+    task: '@task3'

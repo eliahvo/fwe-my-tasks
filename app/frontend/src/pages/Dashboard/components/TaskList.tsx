@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { SmallButton } from "../../../components/SmallButton";
-import { DeleteButton } from "./DeleteButton";
-import { Redirect } from "react-router-dom";
+import { DeleteButton } from "../../../components/DeleteButton";
+import { Redirect, useHistory } from "react-router-dom";
 
 export type Label = {
   labelId: number;
@@ -32,7 +32,7 @@ export type Task = {
 
 
 
-const LabelList = styled.ul`
+export const LabelList = styled.ul`
   list-style: none;
   flex-grow: 1;
   font-size: 0.8rem;
@@ -50,12 +50,12 @@ const LabelList = styled.ul`
   }
 `;
 
-const LabelsSpan = styled.span`
+export const LabelsSpan = styled.span`
   float: left;
   margin-right: 0.5rem;
 `
 
-const TaskFlex = styled.div`
+export const TaskFlex = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -149,12 +149,12 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   onClick = () => { },
 }) => {
+  let history = useHistory();
   const { taskId, name, description, __labels__, __trackings__ } = task;
   const [timerStatus, setTimerStatus] = useState(false);
 
 
-  const onClickDeleteButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const onClickDeleteButton = async function() {
     await fetch("/api/tasks/" + taskId, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -200,7 +200,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         <SmallButton onClick={() => {
           setTimerStatus(!timerStatus);
         }}>{timerStatus ? "Stop timer" : "Start timer"}</SmallButton>
-        <DeleteButton onClick={onClickDeleteButton}>Delete task</DeleteButton>
+        <DeleteButton onClick={() => {
+          onClickDeleteButton();
+          }}>Delete task</DeleteButton>
       </div>
     </TaskItemStyle>
   );
