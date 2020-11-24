@@ -1,16 +1,19 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import styled from "styled-components";
+import { SmallButton } from "../../../components/SmallButton";
+import { DeleteButton } from "./DeleteButton";
+import { Redirect } from "react-router-dom";
 
 export type Label = {
-  id: number;
+  labelId: number;
   name: string;
   createdAt: string;
   updatedAt: string;
 };
 
 export type Tracking = {
-  id: number;
-  name: string;
+  trackingId: number;
+  description: string;
   createdAt: string;
   updatedAt: string;
   timeStart: Date;
@@ -18,13 +21,13 @@ export type Tracking = {
 };
 
 export type Task = {
-  id: string;
+  taskId: string;
   name: string;
   description: string;
-  value: number;
   createdAt: string;
   updatedAt: string;
-  labels: Label[];
+  __labels__: Label[];
+  __trackings__: Tracking[];
 };
 
 
@@ -33,6 +36,7 @@ const LabelList = styled.ul`
   list-style: none;
   flex-grow: 1;
   font-size: 0.8rem;
+  padding-left: 0;
 
   align-self: flex-end;
   display: flex;
@@ -45,6 +49,11 @@ const LabelList = styled.ul`
     color: #333;
   }
 `;
+
+const LabelsSpan = styled.span`
+  float: left;
+  margin-right: 0.5rem;
+`
 
 const TaskFlex = styled.div`
   display: flex;
@@ -96,7 +105,11 @@ export const TaskTitle = styled.p`
 export const TaskDescription = styled.p`
   font-size: 1rem;
   margin: 0;
-  padding-top: 2rem;
+  margin-top: 2rem;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Label = styled.p` 
@@ -116,10 +129,8 @@ export const TrackedTime = styled.p`
   font-size: 1.1rem;
   font-weight: 400;
   margin: 0;
-  padding-top: 0.5rem; 
-`;
-
-export const Buttons = styled.p`
+  padding-top: 0.5rem;
+  clear: both;
 `;
 
 
@@ -128,31 +139,69 @@ export const TaskValue = styled.span`
 `;
 export type TaskItemProps = {
   task: Task;
+  onClick?: (task: Task) => void;
 };
 
+
+
+
 export const TaskItem: React.FC<TaskItemProps> = ({
-  task: {name, description, labels},
+  task,
+  onClick = () => { },
 }) => {
+  const { taskId, name, description, __labels__, __trackings__ } = task;
+  const [timerStatus, setTimerStatus] = useState(false);
+
+
+  const onClickDeleteButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await fetch("/api/tasks/" + taskId, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+  };
+
+
   return (
     <TaskItemStyle>
       <TaskHighlight />
-      <TaskFlex>
-          <div>
-            <TaskTitle>{name}</TaskTitle>
-            <TaskDescription>{description}</TaskDescription>
-            <Label>
-              Labels:
-            </Label>
-            <TrackedTime>Total tracked time:</TrackedTime>
-              
-          </div>
-          <LabelList>
-          {labels &&
-            labels.map((label: Label) => {
-              return <li key={label.id}>{label.id}</li>;
-            })}
-        </LabelList>
+      <TaskFlex onClick={() => {
+        console.log(task);
+        onClick(task);
+      }}>
+        <div>
+          <TaskTitle>{name}</TaskTitle>
+          <TaskDescription>{description}</TaskDescription>
+          <Label>
+            <LabelsSpan>Labels:</LabelsSpan>
+            <LabelList>
+              {__labels__ &&
+                __labels__.map((label: Label) => {
+                  return <li key={label.labelId}>{label.name}</li>;
+                })}
+            </LabelList>
+          </Label>
+          <TrackedTime>Total tracked time: {
+            __trackings__.reduce((prev: any, cur: any) => {
+              const timeStart = new Date(cur.timeStart);
+              const timeEnd = new Date(cur.timeEnd);
+              const diff = (timeEnd.getTime() - timeStart.getTime());
+              console.log(diff, timeEnd.getTime(), diff);
+
+              return diff + prev;
+            }, 0)
+          }</TrackedTime>
+
+        </div>
+
       </TaskFlex>
+      <div>
+        <SmallButton onClick={() => {
+          setTimerStatus(!timerStatus);
+        }}>{timerStatus ? "Stop timer" : "Start timer"}</SmallButton>
+        <DeleteButton onClick={onClickDeleteButton}>Delete task</DeleteButton>
+      </div>
     </TaskItemStyle>
   );
 };

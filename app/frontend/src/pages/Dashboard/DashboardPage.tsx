@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from "react";
 // eslint-disable-next-line
 import styled from "styled-components/macro";
+import { Layout } from "../../components/Layout";
+import { Modal } from "../../components/Modal";
 import { AddButton } from "./components/AddButton";
+import { AddTaskForm } from "./components/AddTaskForm";
+import { StyledFooter } from "./components/StyledFooter";
 import { Task, TaskItem, TaskList } from "./components/TaskList";
+import { useHistory } from "react-router-dom";
 
 
 export const DashboardPage = () => {
+  let history = useHistory();
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [addTaskVisible, setAddTaskVisible] = useState(false);
+  const [currentTaskTimer, setcurrentTaskTimer] = useState(1);
+
+  
+
+  const fetchTasks = async function () {
+    const taskRequest = await fetch("/api/tasks", {
+      headers: { "content-type": "application/json" },
+    });
+    console.log(taskRequest);
+    if (taskRequest.status === 200) {
+      const taskJSON = await taskRequest.json();
+      setTasks(taskJSON.data);
+    }
+  };
 
   useEffect(() => {
-    (async function () {
-      const taskRequest = await fetch("/api/tasks", {
-        headers: { "content-type": "application/json"},
-      });
-      console.log(taskRequest);
-      if (taskRequest.status === 200) {
-        const taskJSON = await taskRequest.json();
-        setTasks(taskJSON.data);
-      }
-    })();
+    fetchTasks();
   }, []);
 
+
   return (
-    <div>
+    <Layout>
       <div
         css={`
           display: flex;
@@ -32,7 +45,6 @@ export const DashboardPage = () => {
       >
         <div>
           <h2>Dashboard</h2>
-          
         </div>
         <div
           css={`
@@ -42,14 +54,41 @@ export const DashboardPage = () => {
             align-items: top;
           `}
         >
-          <AddButton />
+          <AddButton onClick={() => {
+            setAddTaskVisible(!addTaskVisible);
+          }}
+          />
         </div>
       </div>
+      {addTaskVisible && (
+        <Modal
+          title="Add task"
+          onCancel={() => {
+            setAddTaskVisible(false);
+          }}
+        >
+          <AddTaskForm
+            afterSubmit={() => {
+              setAddTaskVisible(false);
+              fetchTasks();
+            }}
+          />
+        </Modal>
+      )}
+
       <TaskList>
         {tasks.map((task) => (
-          <TaskItem task={task}></TaskItem>
+          <TaskItem onClick={() => {
+            history.push(`/tasks/${task.taskId}`);
+          }} task={task}></TaskItem>
         ))}
       </TaskList>
-    </div>
+
+      {currentTaskTimer && (
+        <StyledFooter>
+          <h1>{currentTaskTimer}</h1>
+        </StyledFooter>
+      )}
+    </Layout>
   );
 };

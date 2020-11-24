@@ -9,10 +9,10 @@ export class Tracking {
   @Column()
   description: string;
 
-  @Column({ type: "time", default: 0 })
+  @Column({default: new Date().toString() })
   timeStart: string;
 
-  @Column({ type: "time", default: 0 })
+  @Column({default: new Date().toString()})
   timeEnd: string;
 
   @CreateDateColumn()
