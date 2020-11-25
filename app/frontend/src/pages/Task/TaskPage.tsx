@@ -177,7 +177,7 @@ export const TaskPage = () => {
       )}
         <TaskList>
           {task?.__trackings__.map((tracking) => (
-            <TrackingItem tracking={tracking}></TrackingItem>
+            <TrackingItem tracking={tracking} fetchTask={fetchTask}></TrackingItem>
           ))}
         </TaskList>
       </div>

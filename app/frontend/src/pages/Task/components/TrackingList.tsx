@@ -95,6 +95,7 @@ export const TrackedTime = styled.p`
 
 export type TrackingItemProps = {
   tracking: Tracking;
+  fetchTask: () => {};
 };
 
 
@@ -102,6 +103,7 @@ export type TrackingItemProps = {
 
 export const TrackingItem: React.FC<TrackingItemProps> = ({
   tracking,
+  fetchTask,
 }) => {
   const { trackingId, description, timeStart, timeEnd } = tracking;
   const [editTrackingVisible, setEditTrackingVisible] = useState(false);
@@ -113,7 +115,7 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-
+    fetchTask();
   };
 
   return (

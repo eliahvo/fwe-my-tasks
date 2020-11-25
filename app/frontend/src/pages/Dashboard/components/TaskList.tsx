@@ -142,6 +142,7 @@ export type TaskItemProps = {
   task: Task;
   props: any;
   onChange: any;
+  fetchTasks: () => void;
   onClick?: (task: Task) => void;
 };
 
@@ -149,6 +150,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   props,
   onChange,
+  fetchTasks,
   onClick = () => { },
 }) => {
   let history = useHistory();
@@ -161,7 +163,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-
+    fetchTasks();
   };
 
 
@@ -206,8 +208,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       </TaskFlex>
       <div>
         <SmallButton disabled={props.taskId.toString() == taskId || props.taskId.toString() == 0 ? false : true} onClick={() => {
-          if(!timerStatus) onChange({taskId: taskId, name: name});
-          else onChange({taskId: 0, name: ""});
+          if (!timerStatus) onChange({ taskId: taskId, name: name });
+          else onChange({ taskId: 0, name: "" });
           setTimerStatus(!timerStatus);
         }}>{timerStatus ? "cancel" : "Start timer"}</SmallButton>
         <DeleteButton onClick={() => {

@@ -9,7 +9,6 @@ import { StyledFooter } from "./components/StyledFooter";
 import { Task, TaskItem, TaskList } from "./components/TaskList";
 import { useHistory } from "react-router-dom";
 import { TrackTimeForm } from "./components/TrackTimeForm";
-import { PauseButton } from "../../components/PauseButton";
 
 export const DashboardPage = () => {
   let history = useHistory();
@@ -19,6 +18,7 @@ export const DashboardPage = () => {
 
 
   const fetchTasks = async function () {
+    console.log("fetching tasks");
     const taskRequest = await fetch("/api/tasks", {
       headers: { "content-type": "application/json" },
     });
@@ -26,6 +26,7 @@ export const DashboardPage = () => {
     if (taskRequest.status === 200) {
       const taskJSON = await taskRequest.json();
       setTasks(taskJSON.data);
+      console.log("tasks setted");
     }
   };
 
@@ -80,11 +81,11 @@ export const DashboardPage = () => {
         {tasks.map((task) => (
           <TaskItem onClick={() => {
             history.push(`/tasks/${task.taskId}`);
-          }} task={task} props={currentTaskTimer} onChange={setCurrentTaskTimer}></TaskItem>
+          }} task={task} props={currentTaskTimer} onChange={setCurrentTaskTimer} fetchTasks={fetchTasks}></TaskItem>
         ))}
       </TaskList>
 
-      {currentTaskTimer.taskId && (
+      {currentTaskTimer.taskId != 0 && (
         <StyledFooter>
           <TrackTimeForm task={currentTaskTimer}
             afterSubmit={() => {
