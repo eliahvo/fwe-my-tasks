@@ -38,12 +38,15 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = (
 }) => {
   let tracking: Tracking = { description: "", timeStart: new Date().toString(), timeEnd: "", taskId: task.taskId };
   const [values, setValues] = useState<TrackTimeFormState>(tracking);
+  const [pause, setPause] = useState(false);
+
+
   const startDate = new Date(values.timeStart);
 
   const getDateDifference = function (): string {
     const actualDate = new Date();
     const ms = (actualDate.getTime() - startDate.getTime());
-    
+
     return msToHMS(ms - (ms%1000));
   }
 
@@ -51,7 +54,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = (
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTime(getDateDifference());
+      if(!pause) setTime(getDateDifference());
     }, 1000);
   });
 
@@ -72,7 +75,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = (
         ...values,
       }),
     });
-    afterSubmit();
+    if(!pause) afterSubmit();
   };
 
   return (

@@ -7,6 +7,8 @@ interface AddTrackingFormState {
   taskId: string;
   name: string;
   description: string;
+  timeStart: string;
+  timeEnd: string;
 }
 
 export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }> = ({
@@ -14,8 +16,10 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
   task,
 }) => {
   const [tracking, setTracking] = useState({
-    description: "bretsch",
+    description: "",
     taskId: task.taskId,
+    timeStart: new Date().toString(),
+    timeEnd: new Date().toString(),
   });
 
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {

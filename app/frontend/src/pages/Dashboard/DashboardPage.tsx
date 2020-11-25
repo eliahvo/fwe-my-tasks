@@ -89,6 +89,7 @@ export const DashboardPage = () => {
           <TrackTimeForm task={currentTaskTimer}
             afterSubmit={() => {
               setCurrentTaskTimer({taskId: 0, name: ""});
+              fetchTasks();
             }}></TrackTimeForm>
         </StyledFooter>
       )}
