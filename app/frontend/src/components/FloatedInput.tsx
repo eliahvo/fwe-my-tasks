@@ -41,6 +41,7 @@ export const InputContainer = styled.div`
   position: relative;
   height: 72px;
   margin-bottom: 16px;
+  float:left;
 
   &:focus-within {
     border: 1px solid ${(props) => props.theme.colors.primary};
@@ -49,7 +50,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const Input = ({
+export const FloatedInput = ({
   label,
   ...props
 }: React.ComponentPropsWithoutRef<"input"> & {

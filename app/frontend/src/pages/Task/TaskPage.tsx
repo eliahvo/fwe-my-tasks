@@ -30,6 +30,12 @@ export const StyledTask = styled.ul`
   background-color: ${(props) => props.theme.colors.listBackgroundColor};
 `;
 
+function test() {
+  console.log("context");
+}
+
+export const testContext = React.createContext({});
+
 export const TaskPage = () => {
   let { taskId }: any = useParams();
   const [task, setTask] = useState<Task>();
@@ -67,6 +73,7 @@ export const TaskPage = () => {
 
   return (
     <Layout>
+      <testContext.Provider value={test}>
       <div
         css={`
           display: flex;
@@ -174,6 +181,7 @@ export const TaskPage = () => {
           ))}
         </TaskList>
       </div>
+      </testContext.Provider>
     </Layout>
   );
 };

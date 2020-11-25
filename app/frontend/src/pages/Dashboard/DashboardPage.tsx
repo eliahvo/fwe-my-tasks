@@ -8,15 +8,15 @@ import { AddTaskForm } from "./components/AddTaskForm";
 import { StyledFooter } from "./components/StyledFooter";
 import { Task, TaskItem, TaskList } from "./components/TaskList";
 import { useHistory } from "react-router-dom";
-
+import { TrackTimeForm } from "./components/TrackTimeForm";
+import { PauseButton } from "../../components/PauseButton";
 
 export const DashboardPage = () => {
   let history = useHistory();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [addTaskVisible, setAddTaskVisible] = useState(false);
-  const [currentTaskTimer, setcurrentTaskTimer] = useState(1);
+  const [currentTaskTimer, setCurrentTaskTimer] = useState({taskId: 0, name: ""});
 
-  
 
   const fetchTasks = async function () {
     const taskRequest = await fetch("/api/tasks", {
@@ -80,13 +80,15 @@ export const DashboardPage = () => {
         {tasks.map((task) => (
           <TaskItem onClick={() => {
             history.push(`/tasks/${task.taskId}`);
-          }} task={task}></TaskItem>
+          }} task={task} props={currentTaskTimer} onChange={setCurrentTaskTimer}></TaskItem>
         ))}
       </TaskList>
 
-      {currentTaskTimer && (
+      {currentTaskTimer.taskId && (
         <StyledFooter>
-          <h1>{currentTaskTimer}</h1>
+          <TrackTimeForm task={currentTaskTimer}
+            afterSubmit={() => {
+            }}></TrackTimeForm>
         </StyledFooter>
       )}
     </Layout>

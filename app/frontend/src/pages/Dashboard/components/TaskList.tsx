@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SmallButton } from "../../../components/SmallButton";
 import { DeleteButton } from "../../../components/DeleteButton";
 import { Redirect, useHistory } from "react-router-dom";
+import { msToHMS } from "../../../util/CalculateDate";
 
 export type Label = {
   labelId: number;
@@ -139,14 +140,15 @@ export const TaskValue = styled.span`
 `;
 export type TaskItemProps = {
   task: Task;
+  props: any;
+  onChange: any;
   onClick?: (task: Task) => void;
 };
 
-
-
-
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
+  props,
+  onChange,
   onClick = () => { },
 }) => {
   let history = useHistory();
@@ -154,13 +156,27 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   const [timerStatus, setTimerStatus] = useState(false);
 
 
-  const onClickDeleteButton = async function() {
+  const onClickDeleteButton = async function () {
     await fetch("/api/tasks/" + taskId, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
 
   };
+
+
+  const getDateDifference = function (): string {
+    const ms = task?.__trackings__.reduce((prev: any, cur: any) => {
+      const timeStart = new Date(cur.timeStart);
+      const timeEnd = new Date(cur.timeEnd);
+      const diff = (timeEnd.getTime() - timeStart.getTime());
+      console.log(diff, timeEnd.getTime(), diff);
+
+      return diff + prev;
+    }, 0);
+
+    return msToHMS(ms);
+  }
 
 
   return (
@@ -183,26 +199,20 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             </LabelList>
           </Label>
           <TrackedTime>Total tracked time: {
-            __trackings__.reduce((prev: any, cur: any) => {
-              const timeStart = new Date(cur.timeStart);
-              const timeEnd = new Date(cur.timeEnd);
-              const diff = (timeEnd.getTime() - timeStart.getTime());
-              console.log(diff, timeEnd.getTime(), diff);
-
-              return diff + prev;
-            }, 0)
+            getDateDifference()
           }</TrackedTime>
 
         </div>
-
       </TaskFlex>
       <div>
-        <SmallButton onClick={() => {
+        <SmallButton disabled={props.taskId.toString() == taskId || props.taskId.toString() == 0 ? false : true} onClick={() => {
+          if(!timerStatus) onChange({taskId: taskId, name: name});
+          else onChange({taskId: 0, name: ""});
           setTimerStatus(!timerStatus);
-        }}>{timerStatus ? "Stop timer" : "Start timer"}</SmallButton>
+        }}>{timerStatus ? "cancel" : "Start timer"}</SmallButton>
         <DeleteButton onClick={() => {
           onClickDeleteButton();
-          }}>Delete task</DeleteButton>
+        }}>Delete task</DeleteButton>
       </div>
     </TaskItemStyle>
   );

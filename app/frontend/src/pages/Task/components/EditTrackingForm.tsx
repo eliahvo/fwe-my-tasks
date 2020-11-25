@@ -6,19 +6,28 @@ import { Task, Tracking } from "../../../pages/Dashboard/components/TaskList";
 interface EditTrackingFormState {
   description: string;
   trackingId: number;
+  timeStart: Date;
+  timeEnd: Date;
 }
 
 export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tracking; }> = ({
   afterSubmit,
   tracking,
 }) => {
-  
+
   const [values, setValues] = useState<EditTrackingFormState>(tracking);
 
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //check if datetype is valid
+    if (e.target.name == "timeStart" || e.target.name == "timeEnd") {
+      const date = new Date(e.target.value);
+      if(!isNaN(date.getTime())) {
+        
+      }
+    }
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-  
+
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(values);
@@ -32,7 +41,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
     });
     afterSubmit();
   };
-  
+
   return (
     <form onSubmit={onSubmitForm}>
       <Input
@@ -41,6 +50,22 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         type="text"
         onChange={fieldDidChange}
         value={values.description}
+        required
+      />
+      <Input
+        name="timeStart"
+        label="Time start"
+        type="text"
+        onChange={fieldDidChange}
+        value={values.timeStart.toString()}
+        required
+      />
+      <Input
+        name="timeEnd"
+        label="Time End"
+        type="text"
+        onChange={fieldDidChange}
+        value={values.timeEnd.toString()}
         required
       />
       <Button type="submit">Save changes</Button>
