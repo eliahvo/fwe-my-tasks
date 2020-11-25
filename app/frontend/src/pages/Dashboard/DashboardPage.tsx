@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // eslint-disable-next-line
 import styled from "styled-components/macro";
 import { Layout } from "../../components/Layout";
@@ -15,7 +15,6 @@ export const DashboardPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [addTaskVisible, setAddTaskVisible] = useState(false);
   const [currentTaskTimer, setCurrentTaskTimer] = useState({taskId: 0, name: ""});
-
 
   const fetchTasks = async function () {
     console.log("fetching tasks");
@@ -89,6 +88,7 @@ export const DashboardPage = () => {
         <StyledFooter>
           <TrackTimeForm task={currentTaskTimer}
             afterSubmit={() => {
+              setCurrentTaskTimer({taskId: 0, name: ""});
             }}></TrackTimeForm>
         </StyledFooter>
       )}

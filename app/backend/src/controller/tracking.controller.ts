@@ -70,7 +70,7 @@ export const deleteTracking = async (req: Request, res: Response) => {
  * @param res Response object
  */
 export const createTracking = async (req: Request, res: Response) => {
-  const { description, taskId } = req.body;
+  const { description, taskId, timeStart, timeEnd } = req.body;
 
   // check if description & taskId is set
   if (!description || !taskId) {
@@ -82,6 +82,8 @@ export const createTracking = async (req: Request, res: Response) => {
 
   const tracking = new Tracking();
   tracking.description = description;
+  tracking.timeStart = timeStart;
+  tracking.timeEnd = timeEnd;
   const taskRepository = await getRepository(Task);
 
   await createTrackingInDatabase(tracking, taskRepository, taskId, res);

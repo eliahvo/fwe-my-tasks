@@ -10,9 +10,10 @@ interface EditTrackingFormState {
   timeEnd: Date;
 }
 
-export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tracking; }> = ({
+export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tracking; fetchTask: () => {}}> = ({
   afterSubmit,
   tracking,
+  fetchTask,
 }) => {
 
   const [values, setValues] = useState<EditTrackingFormState>(tracking);
@@ -39,6 +40,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         ...values,
       }),
     });
+    fetchTask();
     afterSubmit();
   };
 

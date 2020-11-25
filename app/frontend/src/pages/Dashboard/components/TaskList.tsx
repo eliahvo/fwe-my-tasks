@@ -176,7 +176,6 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 
       return diff + prev;
     }, 0);
-
     return msToHMS(ms);
   }
 

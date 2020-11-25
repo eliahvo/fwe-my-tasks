@@ -127,7 +127,7 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
             setEditTrackingVisible(false);
           }}
         >
-          <EditTrackingForm tracking={tracking}
+          <EditTrackingForm tracking={tracking} fetchTask={fetchTask}
             afterSubmit={() => {
               setEditTrackingVisible(false);
             }}
