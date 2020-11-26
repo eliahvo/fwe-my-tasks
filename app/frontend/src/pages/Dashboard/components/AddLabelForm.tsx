@@ -3,12 +3,11 @@ import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
 import { SelectInput } from "../../../components/SelectInput";
 
-export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
+export const AddLabelForm: React.FC<{ afterSubmit: () => void }> = ({
   afterSubmit,
 }) => {
   const [values, setValues] = useState({
     name: "",
-    description: "",
   });
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -17,7 +16,7 @@ export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
     e.preventDefault();
     console.log(values);
 
-    await fetch("/api/tasks", {
+    await fetch("/api/labels", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -35,14 +34,9 @@ export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
         onChange={fieldDidChange}
         required
       />
-      <Input
-        name="description"
-        label="Description"
-        type="text"
-        onChange={fieldDidChange}
-        required
-      />
-      <Button type="submit">Add task</Button>
+      
+
+      <Button type="submit">Add label</Button>
     </form>
   );
 };

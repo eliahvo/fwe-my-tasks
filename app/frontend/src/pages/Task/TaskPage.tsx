@@ -14,6 +14,9 @@ import { AddTaskForm } from "../Dashboard/components/AddTaskForm";
 import { EditTaskForm } from "./components/EditTaskForm";
 import { AddButton } from "../Dashboard/components/AddButton";
 import { AddTrackingForm } from "./components/AddTrackingForm";
+import { RoundButton } from "../../components/RoundButton";
+import { AddLabelToTaskForm } from "./components/AddLabelToTaskForm";
+import { DeleteLabelToTaskForm } from "./components/DeleteLabelFromTaskForm";
 
 export const TaskDescription = styled.p`
   font-size: 1rem;
@@ -39,8 +42,9 @@ export const testContext = React.createContext({});
 export const TaskPage = () => {
   let { taskId }: any = useParams();
   const [task, setTask] = useState<Task>();
-  const [trackings, setTrackings] = useState<Tracking[]>([]);
   const [editTaskVisible, setEditTaskVisible] = useState(false);
+  const [addLabelToTaskVisible, setAddLabelToTaskVisible] = useState(false);
+  const [deleteLabelToTaskVisible, setDeleteLabelToTaskVisible] = useState(false);
   const [addTrackingVisible, setAddTrackingVisible] = useState(false);
 
   const fetchTask = async function () {
@@ -92,12 +96,50 @@ export const TaskPage = () => {
             align-items: top;
           `}
         >
+          <RoundButton name="Add label" onClick={() => {
+            setAddLabelToTaskVisible(!addLabelToTaskVisible);
+          }}
+          />
+          <RoundButton name="Delete label" onClick={() => {
+            setDeleteLabelToTaskVisible(!deleteLabelToTaskVisible);
+          }}
+          />
           <EditButton onClick={() => {
             setEditTaskVisible(!editTaskVisible);
           }}
           />
         </div>
       </div>
+      {addLabelToTaskVisible && (
+        <Modal
+          title="Add label"
+          onCancel={() => {
+            setAddLabelToTaskVisible(false);
+          }}
+        >
+          <AddLabelToTaskForm taskId={task?.taskId!}
+            afterSubmit={() => {
+              fetchTask();
+              setAddLabelToTaskVisible(false);
+            }}
+          />
+        </Modal>
+      )}
+      {deleteLabelToTaskVisible && (
+        <Modal
+          title="Delete label"
+          onCancel={() => {
+            setDeleteLabelToTaskVisible(false);
+          }}
+        >
+          <DeleteLabelToTaskForm taskId={task?.taskId!}
+            afterSubmit={() => {
+              fetchTask();
+              setDeleteLabelToTaskVisible(false);
+            }}
+          />
+        </Modal>
+      )}
       {editTaskVisible && (
         <Modal
           title="Edit task"
@@ -121,8 +163,8 @@ export const TaskPage = () => {
               <Label>
                 <LabelsSpan>Labels:</LabelsSpan>
                 <LabelList>
-                  {task?.__labels__ &&
-                    task?.__labels__.map((label: Label) => {
+                  {task?.labels &&
+                    task?.labels.map((label: Label) => {
                       return <li key={label.labelId}>{label.name}</li>;
                     })}
                 </LabelList>

@@ -27,7 +27,7 @@ export type Task = {
   description: string;
   createdAt: string;
   updatedAt: string;
-  __labels__: Label[];
+  labels: Label[];
   __trackings__: Tracking[];
 };
 
@@ -154,7 +154,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   onClick = () => { },
 }) => {
   let history = useHistory();
-  const { taskId, name, description, __labels__, __trackings__ } = task;
+  const { taskId, name, description, labels, __trackings__ } = task;
   const [timerStatus, setTimerStatus] = useState(false);
 
 
@@ -172,7 +172,6 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       const timeStart = new Date(cur.timeStart);
       const timeEnd = new Date(cur.timeEnd);
       const diff = (timeEnd.getTime() - timeStart.getTime());
-      console.log(diff, timeEnd.getTime(), diff);
 
       return diff + prev;
     }, 0);
@@ -184,7 +183,6 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     <TaskItemStyle>
       <TaskHighlight />
       <TaskFlex onClick={() => {
-        console.log(task);
         onClick(task);
       }}>
         <div>
@@ -193,8 +191,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           <Label>
             <LabelsSpan>Labels:</LabelsSpan>
             <LabelList>
-              {__labels__ &&
-                __labels__.map((label: Label) => {
+              {labels &&
+                labels.map((label: Label) => {
                   return <li key={label.labelId}>{label.name}</li>;
                 })}
             </LabelList>

@@ -32,34 +32,37 @@ interface TrackTimeFormState {
   timeEnd: string;
 }
 
-export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = ({
+export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = ({
   afterSubmit,
   task,
 }) => {
   let tracking: Tracking = { description: "", timeStart: new Date().toString(), timeEnd: "", taskId: task.taskId };
   const [values, setValues] = useState<TrackTimeFormState>(tracking);
+  const [startTime, setStartTime] = useState(values.timeStart);
   const [pause, setPause] = useState(false);
 
 
-  const startDate = new Date(values.timeStart);
+
+  console.log(pause);
+
+  const startDate = new Date(startTime);
 
   const getDateDifference = function (): string {
     const actualDate = new Date();
     const ms = (actualDate.getTime() - startDate.getTime());
 
-    return msToHMS(ms - (ms%1000));
+    return msToHMS(ms - (ms % 1000));
   }
 
   const [time, setTime] = useState(getDateDifference());
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if(!pause) setTime(getDateDifference());
+      setTime(getDateDifference());
     }, 1000);
   });
 
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if(e.target.name == "description") console.log("des", e.target.name, e.target.value);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -75,7 +78,12 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = (
         ...values,
       }),
     });
-    if(!pause) afterSubmit();
+    if (pause) {
+      setStartTime(new Date().toString());
+      setPause(false);
+    } else {
+      afterSubmit();
+    }
   };
 
   return (
@@ -91,7 +99,10 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any;}> = (
         />
         <H2Styled>{time}</H2Styled>
         <StopButton type="submit"></StopButton>
-        <PauseButton type="button"></PauseButton>
+        <PauseButton type="submit" onClick={() => {
+          console.log("pause clicked");
+          setPause(true);
+        }}></PauseButton>
       </form>
     </TrackerStyled>
   );

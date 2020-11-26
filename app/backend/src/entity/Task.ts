@@ -21,7 +21,7 @@ export class Task {
 
   @ManyToMany(() => Label, label => label.tasks, { nullable: true })
   @JoinTable()
-  labels: Promise<Label[]>;
+  labels: Label[];
 
   @OneToMany(() => Tracking, tracking => tracking.task)
   trackings: Promise<Tracking[]>;

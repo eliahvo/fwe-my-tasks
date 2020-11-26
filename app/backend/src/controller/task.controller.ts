@@ -5,15 +5,28 @@ import { Task } from "../entity/Task";
 
 /**
  * returns a list of all tasks
- * @param _ Request object
+ * @param req Request object
  * @param res Response object
  */
-export const getTasks = async (_: Request, res: Response) => {
+export const getTasks = async (req: Request, res: Response) => {
+  const { labelFilter, taskNameFilter, taskDescriptionFilter } = req.query;
   const taskRepository = await getRepository(Task);
-  const tasks = await taskRepository.find({relations: ['labels', 'trackings']});
-  
+  const tasks = await taskRepository.find({ relations: ['labels', 'trackings'] });
+
+  let results = [...tasks];
+  if (labelFilter) {
+    const labelFilterList = labelFilter.toString().split("; ");
+    results = results.filter(r => (r.labels.some((val) => labelFilterList.indexOf(val.name) !== -1)));
+  }
+  if (taskNameFilter) {
+    results = results.filter(r => r.name === taskNameFilter);
+  }
+  if (taskDescriptionFilter) {
+    results = results.filter(r => r.description.includes(taskDescriptionFilter.toString()));
+  }
+
   res.status(200).send({
-    data: tasks
+    data: results
   });
 };
 
@@ -28,7 +41,7 @@ export const getTask = async (req: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
 
   try {
-    const task = await taskRepository.findOneOrFail(taskId, {relations: ['labels', 'trackings']});
+    const task = await taskRepository.findOneOrFail(taskId, { relations: ['labels', 'trackings'] });
     res.status(200).send({
       data: task
     });
@@ -135,7 +148,7 @@ export const addLabelsToTask = async (req: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
 
   // check if labelIdList is set
-  if(!labelIdList) {
+  if (!labelIdList) {
     res.status(400).send({
       status: 'parameter is missing'
     });
@@ -171,7 +184,7 @@ export const deleteLabelsFromTask = async (req: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
 
   // check if labelIdList is set
-  if(!labelIdList) {
+  if (!labelIdList) {
     res.status(400).send({
       status: 'parameter is missing'
     });
@@ -206,7 +219,7 @@ export const getLabelsFromTask = async (req: Request, res: Response) => {
   const taskRepository = await getRepository(Task);
 
   try {
-    const task: Task = await taskRepository.findOneOrFail(taskId);
+    const task: Task = await taskRepository.findOneOrFail(taskId, { relations: ['labels'] });
     const taskLabels = await task.labels;
 
     res.status(200).send({
@@ -245,30 +258,30 @@ export const getTrackingsFromTask = async (req: Request, res: Response) => {
   }
 }
 
- /**
-  * function that is called in deleteLabelsFromTask and is extracted because of its complexity
-  * @param taskLabels list of labels from task
-  * @param labelIdList list of labels which will be removed from task
-  * @param task task 
-  * @param taskRepository repository of tasks from database
-  */
+/**
+ * function that is called in deleteLabelsFromTask and is extracted because of its complexity
+ * @param taskLabels list of labels from task
+ * @param labelIdList list of labels which will be removed from task
+ * @param task task 
+ * @param taskRepository repository of tasks from database
+ */
 async function deleteLabelsFromDatabase(taskLabels: Label[], labelIdList: any, task: Task, taskRepository) {
   taskLabels = taskLabels.filter((label) => !labelIdList.includes(label.labelId));
 
-  task.labels = Promise.resolve(taskLabels);
+  task.labels = taskLabels;
 
   task = await taskRepository.save(task);
   return task;
 }
 
- /**
-  * function that is called in addLabelsToTask and is extracted because of its complexity
-  * @param labelIdList list of labels which will be removed from task
-  * @param labelRepository repository of labels from database
-  * @param taskLabels list of labels from task
-  * @param task task
-  * @param taskRepository repository of tasks from database
-  */
+/**
+ * function that is called in addLabelsToTask and is extracted because of its complexity
+ * @param labelIdList list of labels which will be removed from task
+ * @param labelRepository repository of labels from database
+ * @param taskLabels list of labels from task
+ * @param task task
+ * @param taskRepository repository of tasks from database
+ */
 async function addLabelsToDatabase(labelIdList: any, labelRepository, taskLabels: Label[], task: Task, taskRepository) {
   for (let i = 0; i < Object.keys(labelIdList).length; i += 1) {
     const labelId: number = labelIdList[i];

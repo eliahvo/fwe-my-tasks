@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export const PauseButton = (
-  props: React.ButtonHTMLAttributes<HTMLButtonElement>,
+export const RoundButton = (
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>
 ) => {
   const StyledButton = styled.button`
     width: 48px;
@@ -11,11 +11,9 @@ export const PauseButton = (
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
     margin-right: 0.5rem;
-    margin-left: 0.5rem;
+    border-radius: 50%;
     background-color: ${(props) => props.theme.colors.primary};
-    float: right;
     &:hover,
     &:focus {
       transform: translateY(-2px);
@@ -24,14 +22,7 @@ export const PauseButton = (
   `;
   return (
     <StyledButton {...props}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24">
-          <rect width="5" x="5" height="100"/>
-          <rect width="5" x="15" height="100"/>
-        </svg>
-    </StyledButton >
+      {props.name}
+    </StyledButton>
   );
 };
