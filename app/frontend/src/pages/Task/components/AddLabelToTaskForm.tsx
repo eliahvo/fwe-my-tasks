@@ -47,6 +47,7 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
         type="text"
         label="Name"
         onChange={fieldDidChange}
+        autoComplete="off"
         required
       />
 

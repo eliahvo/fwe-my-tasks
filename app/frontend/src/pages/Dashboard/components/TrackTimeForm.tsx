@@ -96,6 +96,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
           type="text"
           onChange={fieldDidChange}
           required
+          autoComplete="off"
         />
         <H2Styled>{time}</H2Styled>
         <StopButton type="submit"></StopButton>

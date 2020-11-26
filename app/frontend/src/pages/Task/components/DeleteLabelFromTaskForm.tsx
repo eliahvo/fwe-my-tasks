@@ -47,6 +47,7 @@ export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: 
         type="text"
         label="Name"
         onChange={fieldDidChange}
+        autoComplete="off"
         required
       />
 

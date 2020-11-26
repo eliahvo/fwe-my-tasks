@@ -27,18 +27,21 @@ export const FilterForm: React.FC<{ afterSubmit: () => void; filter: any; setFil
         type="text"
         label="Enter labels like 'label1; label2...'"
         onChange={fieldDidChange}
+        autoComplete="off"
       />
       <Input
         name="taskName"
         type="text"
         label="Task name"
         onChange={fieldDidChange}
+        autoComplete="off"
       />
       <Input
         name="taskDescription"
         type="text"
         label="Task description"
         onChange={fieldDidChange}
+        autoComplete="off"
       />
       <Button type="submit">Save changes</Button>
     </form>

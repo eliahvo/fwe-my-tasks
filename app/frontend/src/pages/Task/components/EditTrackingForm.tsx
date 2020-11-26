@@ -52,6 +52,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         type="text"
         onChange={fieldDidChange}
         value={values.description}
+        autoComplete="off"
         required
       />
       <Input
@@ -60,6 +61,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         type="text"
         onChange={fieldDidChange}
         value={values.timeStart.toString()}
+        autoComplete="off"
         required
       />
       <Input
@@ -68,6 +70,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         type="text"
         onChange={fieldDidChange}
         value={values.timeEnd.toString()}
+        autoComplete="off"
         required
       />
       <Button type="submit">Save changes</Button>

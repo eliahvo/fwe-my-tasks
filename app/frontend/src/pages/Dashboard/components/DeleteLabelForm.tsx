@@ -43,6 +43,7 @@ export const DeleteLabelForm: React.FC<{ afterSubmit: () => void}> = ({
         type="text"
         label="Name"
         onChange={fieldDidChange}
+        autoComplete="off"
         required
       />
 

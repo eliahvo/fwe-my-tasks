@@ -42,6 +42,7 @@ export const EditTaskForm: React.FC<{ afterSubmit: () => void; task: Task; }> = 
         label="Name"
         onChange={fieldDidChange}
         value={values.name}
+        autoComplete="off"
         required
       />
       <Input
@@ -50,6 +51,7 @@ export const EditTaskForm: React.FC<{ afterSubmit: () => void; task: Task; }> = 
         type="text"
         onChange={fieldDidChange}
         value={values.description}
+        autoComplete="off"
         required
       />
       <Button type="submit">Save changes</Button>

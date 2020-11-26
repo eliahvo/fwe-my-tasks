@@ -47,6 +47,7 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
         type="text"
         label="Description"
         onChange={fieldDidChange}
+        autoComplete="off"
         required
       />
       <Button type="submit">Save changes</Button>
