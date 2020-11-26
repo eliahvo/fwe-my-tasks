@@ -156,7 +156,7 @@ export const addLabelsToTask = async (req: Request, res: Response) => {
   }
 
   try {
-    let task: Task = await taskRepository.findOneOrFail(taskId);
+    let task: Task = await taskRepository.findOneOrFail(taskId, { relations: ['labels'] });
     const taskLabels = await task.labels;
     const labelRepository = await getRepository(Label);
 
@@ -192,7 +192,7 @@ export const deleteLabelsFromTask = async (req: Request, res: Response) => {
   }
 
   try {
-    let task: Task = await taskRepository.findOneOrFail(taskId);
+    let task: Task = await taskRepository.findOneOrFail(taskId, { relations: ['labels'] });
     let taskLabels = await task.labels;
 
     task = await deleteLabelsFromDatabase(taskLabels, labelIdList, task, taskRepository);

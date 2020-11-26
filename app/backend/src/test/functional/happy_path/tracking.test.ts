@@ -41,7 +41,7 @@ describe('tracking', () => {
       .expect(200)
       .end((err, res) => {
         if (err) throw err;
-        expect(res.body.data.length).toBe(2);
+        expect(res.body.data.length).toBe(4);
         expect(res.body.data[0].description).toBe('Tracking1');
         expect(res.body.data[0].task.taskId).toBe(1);
         done();
