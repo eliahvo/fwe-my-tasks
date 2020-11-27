@@ -201,11 +201,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         </div>
       </TaskFlex>
       <div>
-        <SmallButton disabled={props.taskId.toString() === taskId || props.taskId.toString() === 0 ? false : true}
+        <SmallButton disabled={props.taskId.toString() == taskId || props.taskId.toString() == 0 ? false : true}
           onClick={() => {
-            if (!(props.taskId.toString() === taskId)) onChange({ taskId: taskId, name: name });
+            if (!(props.taskId.toString() == taskId)) onChange({ taskId: taskId, name: name });
             else onChange({ taskId: 0, name: "" });
-          }}>{props.taskId.toString() === taskId ? "cancel" : "Start timer"}</SmallButton>
+          }}>{props.taskId.toString() == taskId ? "cancel" : "Start timer"}</SmallButton>
         <DeleteButton onClick={() => {
           onClickDeleteButton();
         }}>Delete task</DeleteButton>

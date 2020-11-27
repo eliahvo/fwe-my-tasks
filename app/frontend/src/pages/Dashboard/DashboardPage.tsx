@@ -24,6 +24,7 @@ export const ShowLabelsStyled = styled.div`
   border-width: 2px;
   border-style: solid;
   padding: 0.5rem;
+  overflow: auto;
 `;
 
 
