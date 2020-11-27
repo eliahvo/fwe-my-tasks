@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { SmallButton } from "../../../components/SmallButton";
 import { DeleteButton } from "../../../components/DeleteButton";
@@ -105,6 +105,8 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
   const { trackingId, description, timeStart, timeEnd } = tracking;
   const [editTrackingVisible, setEditTrackingVisible] = useState(false);
 
+  const tStart = new Date(timeStart);
+  const tEnd = new Date(timeEnd);
 
   const onClickDeleteButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -137,8 +139,9 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
           <div>
             <TrackingDescription>{description}</TrackingDescription>
             <p></p>
-            <TrackingSpan>Start time: {timeStart}</TrackingSpan>
-            <TrackingSpan>End time: {timeEnd}</TrackingSpan>
+            <TrackingSpan>Start time: {tStart.toLocaleString()}</TrackingSpan>
+            <br></br>
+            <TrackingSpan>End time: {tEnd.toLocaleString()}</TrackingSpan>
             <TrackedTime>Duration: {
               msToHMS(new Date(timeEnd).getTime() - new Date(timeStart).getTime())
             }</TrackedTime>

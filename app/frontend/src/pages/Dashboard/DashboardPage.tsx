@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // eslint-disable-next-line
 import styled from "styled-components/macro";
 import { Layout } from "../../components/Layout";
@@ -12,10 +12,7 @@ import { TrackTimeForm } from "./components/TrackTimeForm";
 import { RoundButton } from "../../components/RoundButton";
 import { AddLabelForm } from "./components/AddLabelForm";
 import { DeleteLabelForm } from "./components/DeleteLabelForm";
-import { SmallButton } from "../../components/SmallButton";
 import { FilterForm } from "./components/FilterForm";
-import { Input } from "../../components/Input";
-import { FloatedInput } from "../../components/FloatedInput";
 
 
 export const ShowLabelsStyled = styled.div`
@@ -190,9 +187,9 @@ export const DashboardPage = () => {
         })}
       </TaskList>
 
-      {currentTaskTimer.taskId != 0 && (
+      {currentTaskTimer.taskId !== 0 && (
         <StyledFooter>
-          <TrackTimeForm task={currentTaskTimer}
+          <TrackTimeForm task={currentTaskTimer} fetchTasks={fetchTasks}
             afterSubmit={() => {
               setCurrentTaskTimer({ taskId: 0, name: "" });
               fetchTasks();

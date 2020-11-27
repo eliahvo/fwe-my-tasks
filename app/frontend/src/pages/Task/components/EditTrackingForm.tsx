@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
-import { Task, Tracking } from "../../../pages/Dashboard/components/TaskList";
+import { Tracking } from "../../../pages/Dashboard/components/TaskList";
 
 interface EditTrackingFormState {
   description: string;
@@ -20,7 +20,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
 
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     //check if datetype is valid
-    if (e.target.name == "timeStart" || e.target.name == "timeEnd") {
+    if (e.target.name === "timeStart" || e.target.name === "timeEnd") {
       const date = new Date(e.target.value);
       if(!isNaN(date.getTime())) {
         
@@ -60,7 +60,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         label="Time start"
         type="text"
         onChange={fieldDidChange}
-        value={values.timeStart.toString()}
+        value={values.timeStart.toLocaleString()}
         autoComplete="off"
         required
       />
@@ -69,7 +69,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         label="Time End"
         type="text"
         onChange={fieldDidChange}
-        value={values.timeEnd.toString()}
+        value={values.timeEnd.toLocaleString()}
         autoComplete="off"
         required
       />

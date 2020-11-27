@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import { FloatedInput } from "../../../components/FloatedInput";
 import { RoundedButton } from "../../../components/Button";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { msToHMS } from "../../../util/CalculateDate";
 
 export const TrackerStyled = styled.div`
@@ -29,8 +29,9 @@ interface TrackTimeFormState {
   timeEnd: string;
 }
 
-export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = ({
+export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetchTasks : () => void}> = ({
   afterSubmit,
+  fetchTasks,
   task,
 }) => {
   let tracking: Tracking = { description: "", timeStart: new Date().toString(), timeEnd: "", taskId: task.taskId };
@@ -54,6 +55,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
   const [time, setTime] = useState(getDateDifference());
 
   useEffect(() => {
+    //eslint-disable-next-line
     const timer = setTimeout(() => {
       if (!pause) setTime(getDateDifference());
     }, 1000);
@@ -84,6 +86,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
         setValues({ description: values.description, timeStart: new Date().toString(), timeEnd: values.timeEnd, taskId: values.taskId });
         //startDate = new Date(values.timeStart);
       } else {
+        fetchTasks();
       }
     } else {
       afterSubmit();
@@ -104,7 +107,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
         />
         <H2Styled>{time}</H2Styled>
         <RoundedButton type="submit" disabled={pause} onClick={() => {
-          if (values.description != "") {
+          if (values.description !== "") {
             setStop(true);
           }
         }}>
@@ -118,7 +121,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
         </RoundedButton>
         <RoundedButton type="submit" onClick={() => {
           console.log("pause clicked");
-          if (values.description != "") {
+          if (values.description !== "") {
             setPause(!pause);
           }
         }}>
@@ -145,11 +148,3 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
     </TrackerStyled>
   );
 };
-
-/*
-<StopButton type="submit"></StopButton>
-        <PauseButton type="submit" onClick={() => {
-          console.log("pause clicked");
-          setPause(true);
-        }}></PauseButton>
-*/

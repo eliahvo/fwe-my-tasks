@@ -23,7 +23,7 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
       const taskJSON = await taskRequest.json();
 
       for (let i = 0; i < Object.keys(taskJSON.data).length; i++) {
-        if (taskJSON.data[i].name == values.name) {
+        if (taskJSON.data[i].name === values.name) {
           await fetch(`/api/tasks/${taskId}/labels`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
         }
       }
     }
-    {alert("label doesn't exist\ncreate it in dashboard")}
+    alert("label doesn't exist\ncreate it in dashboard");
     afterSubmit();
   };
   return (

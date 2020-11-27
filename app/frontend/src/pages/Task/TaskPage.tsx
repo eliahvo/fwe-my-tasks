@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // eslint-disable-next-line
 import styled from "styled-components/macro";
 import { Layout } from "../../components/Layout";
-import { Label, Task, LabelList, LabelsSpan, TaskFlex, TaskTitle, TaskItemStyle, TrackedTime, TaskHighlight, TaskList, Tracking } from "../Dashboard/components/TaskList";
+import { Label, Task, LabelList, LabelsSpan, TaskFlex, TaskItemStyle, TrackedTime, TaskList } from "../Dashboard/components/TaskList";
 import {
   useParams
 } from "react-router-dom";

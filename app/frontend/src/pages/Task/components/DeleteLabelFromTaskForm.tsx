@@ -23,7 +23,7 @@ export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: 
       const taskJSON = await taskRequest.json();
 
       for (let i = 0; i < Object.keys(taskJSON.data).length; i++) {
-        if (taskJSON.data[i].name == values.name) {
+        if (taskJSON.data[i].name === values.name) {
           await fetch(`/api/tasks/${taskId}/labels`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: 
         }
       }
     }
-    {alert("label doesn't exist")}
+    alert("label doesn't exist");
     afterSubmit();
   };
   return (

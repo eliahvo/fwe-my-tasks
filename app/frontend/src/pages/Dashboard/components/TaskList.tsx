@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { SmallButton } from "../../../components/SmallButton";
 import { DeleteButton } from "../../../components/DeleteButton";
-import { Redirect, useHistory } from "react-router-dom";
 import { msToHMS } from "../../../util/CalculateDate";
 
 export type Label = {
@@ -38,7 +37,7 @@ export const LabelList = styled.ul`
   flex-grow: 1;
   font-size: 0.8rem;
   padding-left: 0;
-
+  
   align-self: flex-end;
   display: flex;
   & > li {
@@ -166,7 +165,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 
 
   const getDateDifference = function (): string {
-    const ms = task?.__trackings__.reduce((prev: any, cur: any) => {
+    const ms = __trackings__.reduce((prev: any, cur: any) => {
       const timeStart = new Date(cur.timeStart);
       const timeEnd = new Date(cur.timeEnd);
       const diff = (timeEnd.getTime() - timeStart.getTime());
@@ -202,11 +201,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         </div>
       </TaskFlex>
       <div>
-        <SmallButton disabled={props.taskId.toString() == taskId || props.taskId.toString() == 0 ? false : true}
+        <SmallButton disabled={props.taskId.toString() === taskId || props.taskId.toString() === 0 ? false : true}
           onClick={() => {
-            if (!(props.taskId.toString() == taskId)) onChange({ taskId: taskId, name: name });
+            if (!(props.taskId.toString() === taskId)) onChange({ taskId: taskId, name: name });
             else onChange({ taskId: 0, name: "" });
-          }}>{props.taskId.toString() == taskId ? "cancel" : "Start timer"}</SmallButton>
+          }}>{props.taskId.toString() === taskId ? "cancel" : "Start timer"}</SmallButton>
         <DeleteButton onClick={() => {
           onClickDeleteButton();
         }}>Delete task</DeleteButton>
