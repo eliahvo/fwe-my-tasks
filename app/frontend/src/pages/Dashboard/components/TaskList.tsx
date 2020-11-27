@@ -153,9 +153,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   fetchTasks,
   onClick = () => { },
 }) => {
-  let history = useHistory();
   const { taskId, name, description, labels, __trackings__ } = task;
-  const [timerStatus, setTimerStatus] = useState(false);
 
 
   const onClickDeleteButton = async function () {

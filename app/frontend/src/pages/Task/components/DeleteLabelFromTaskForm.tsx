@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
-import { SelectInput } from "../../../components/SelectInput";
 
 export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: string }> = ({
   afterSubmit,

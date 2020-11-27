@@ -1,13 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import { FloatedInput } from "../../../components/FloatedInput";
 import { RoundedButton } from "../../../components/Button";
-import { Task } from "./TaskList";
-import { PauseButton } from "../../../components/PauseButton";
-import { StopButton } from "../../../components/StopButton";
 import styled, { css } from "styled-components";
 import { msToHMS } from "../../../util/CalculateDate";
-import { SmallButton } from "../../../components/SmallButton";
-import { RoundButton } from "../../../components/RoundButton";
 
 export const TrackerStyled = styled.div`
   padding: 0.5rem;
