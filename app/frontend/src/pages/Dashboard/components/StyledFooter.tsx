@@ -13,4 +13,3 @@ export const StyledFooter = styled.div`
   border-width: 2px;
   border-style: solid;
 `;
-

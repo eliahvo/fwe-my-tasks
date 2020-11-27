@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import { FloatedInput } from "../../../components/FloatedInput";
-import { Button } from "../../../components/Button";
+import { RoundedButton } from "../../../components/Button";
 import { Task } from "./TaskList";
 import { PauseButton } from "../../../components/PauseButton";
 import { StopButton } from "../../../components/StopButton";
 import styled, { css } from "styled-components";
 import { msToHMS } from "../../../util/CalculateDate";
+import { SmallButton } from "../../../components/SmallButton";
+import { RoundButton } from "../../../components/RoundButton";
 
 export const TrackerStyled = styled.div`
   padding: 0.5rem;
@@ -38,14 +40,14 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
 }) => {
   let tracking: Tracking = { description: "", timeStart: new Date().toString(), timeEnd: "", taskId: task.taskId };
   const [values, setValues] = useState<TrackTimeFormState>(tracking);
-  const [startTime, setStartTime] = useState(values.timeStart);
   const [pause, setPause] = useState(false);
+  const [stop, setStop] = useState(false);
+
+  const startDate = new Date(values.timeStart);
 
 
+  console.log("startTIme: ", startDate);
 
-  console.log(pause);
-
-  const startDate = new Date(startTime);
 
   const getDateDifference = function (): string {
     const actualDate = new Date();
@@ -58,7 +60,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTime(getDateDifference());
+      if (!pause) setTime(getDateDifference());
     }, 1000);
   });
 
@@ -67,20 +69,27 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
   };
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(pause);
     e.preventDefault();
     values.timeEnd = new Date().toString();
     console.log("onSubmitForm: ", values);
 
-    await fetch(`/api/trackings`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...values,
-      }),
-    });
-    if (pause) {
-      setStartTime(new Date().toString());
-      setPause(false);
+    if (pause || stop) {
+      console.log("post tracking");
+      await fetch(`/api/trackings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+        }),
+      });
+    }
+    if (!stop) {
+      if (!pause) {
+        setValues({ description: values.description, timeStart: new Date().toString(), timeEnd: values.timeEnd, taskId: values.taskId });
+        //startDate = new Date(values.timeStart);
+      } else {
+      }
     } else {
       afterSubmit();
     }
@@ -99,12 +108,51 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
           autoComplete="off"
         />
         <H2Styled>{time}</H2Styled>
-        <StopButton type="submit"></StopButton>
-        <PauseButton type="submit" onClick={() => {
+        <RoundedButton type="submit" disabled={pause} onClick={() => {
+          setStop(true);
+        }}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24">
+            <rect width="100" height="100" />
+          </svg>
+        </RoundedButton>
+        <RoundedButton type="submit" onClick={() => {
           console.log("pause clicked");
-          setPause(true);
-        }}></PauseButton>
+          if (values.description != "") {
+            setPause(!pause);
+          }
+        }}>
+          {pause ?
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24">
+              <polygon fill="black" points="5,20 5,0 20,10" />
+            </svg>
+            :
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24">
+              <rect width="5" x="5" height="100" />
+              <rect width="5" x="15" height="100" />
+            </svg>
+          }
+        </RoundedButton>
       </form>
     </TrackerStyled>
   );
 };
+
+/*
+<StopButton type="submit"></StopButton>
+        <PauseButton type="submit" onClick={() => {
+          console.log("pause clicked");
+          setPause(true);
+        }}></PauseButton>
+*/

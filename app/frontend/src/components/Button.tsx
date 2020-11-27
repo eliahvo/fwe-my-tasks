@@ -18,3 +18,21 @@ export const Button = styled.button`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
 `;
+
+export const RoundedButton = styled.button`
+    width: 48px;
+    border: 0px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    float:right;
+    background-color: ${(props) => props.theme.colors.primary};
+    &:hover,
+    &:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+  `;

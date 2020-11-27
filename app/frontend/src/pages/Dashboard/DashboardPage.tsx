@@ -14,6 +14,8 @@ import { AddLabelForm } from "./components/AddLabelForm";
 import { DeleteLabelForm } from "./components/DeleteLabelForm";
 import { SmallButton } from "../../components/SmallButton";
 import { FilterForm } from "./components/FilterForm";
+import { Input } from "../../components/Input";
+import { FloatedInput } from "../../components/FloatedInput";
 
 
 export const ShowLabelsStyled = styled.div`

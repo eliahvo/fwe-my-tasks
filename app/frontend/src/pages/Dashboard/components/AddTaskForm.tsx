@@ -10,6 +10,7 @@ export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
     name: "",
     description: "",
   });
+
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };

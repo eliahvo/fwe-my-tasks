@@ -25,6 +25,7 @@ const Main = styled.main`
 const Footer = styled.footer`
   height: ${footerHeight};
   padding: 0 25px;
+  padding-top: 5rem;
   ${MaxWidthCSS};
 `;
 
