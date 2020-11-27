@@ -109,7 +109,9 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; }> = 
         />
         <H2Styled>{time}</H2Styled>
         <RoundedButton type="submit" disabled={pause} onClick={() => {
-          setStop(true);
+          if (values.description != "") {
+            setStop(true);
+          }
         }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
