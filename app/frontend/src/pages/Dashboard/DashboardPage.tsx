@@ -25,8 +25,9 @@ export const ShowLabelsStyled = styled.div`
   border-style: solid;
   padding: 0.5rem;
   overflow: auto;
+  padding-top: 0;
+  padding-bottom: 1rem;
 `;
-
 
 export const DashboardPage = () => {
   let history = useHistory();

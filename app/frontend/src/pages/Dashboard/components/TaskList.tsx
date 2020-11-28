@@ -39,10 +39,12 @@ export const LabelList = styled.ul`
   padding-left: 0;
   
   align-self: flex-end;
-  display: flex;
+  display: block;
   & > li {
     margin-right: 0.5rem;
+    margin-top: 0.25rem;
     padding: 0.125rem;
+    float: left;
     border-radius: 0.25rem;
     background-color: ${(props) => props.theme.colors.primary};
     display: block;
