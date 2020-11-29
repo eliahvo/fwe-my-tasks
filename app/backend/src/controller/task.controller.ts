@@ -11,7 +11,9 @@ import { Task } from "../entity/Task";
 export const getTasks = async (req: Request, res: Response) => {
   const { labelFilter, taskNameFilter, taskDescriptionFilter } = req.query;
   const taskRepository = await getRepository(Task);
-  const tasks = await taskRepository.find({ relations: ['labels', 'trackings'] });
+  const tasks = await taskRepository.find({ relations: ['labels', 'trackings'], order: {
+    taskId: "ASC"
+} });
 
   let results = [...tasks];
   if (labelFilter) {

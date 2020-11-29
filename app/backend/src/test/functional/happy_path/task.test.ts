@@ -200,4 +200,23 @@ describe('task', () => {
         done();
       });
   });
+
+  it('should return all tasks by a filter', async (done) => {
+    await helper.resetDatabase();
+    await helper.loadFixtures();
+
+    request(helper.app)
+      .get('/api/tasks?labelFilter=Label1&taskNameFilter=Task1&taskDescriptionFilter=Test')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw err;
+        expect(res.body.data.length).toBe(1);
+        expect(res.body.data[0].name).toBe('Task1');
+        expect(res.body.data[0].description).toBe('Test description');
+        done();
+      });
+  });
+
 });
