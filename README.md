@@ -1,5 +1,5 @@
-# Fortgeschrittene Webentwicklung - Homework 1
-As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timetracker application. In this first homework I developed a backend api for this application.
+# Fortgeschrittene Webentwicklung - Homework
+As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timetracker application.
 
 ## Installation
 
