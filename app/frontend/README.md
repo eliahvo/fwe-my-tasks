@@ -18,16 +18,19 @@ Click here to change the filter. The following modal will come up:
 <details>
 <summary>2. Create label</summary>
 Click here to create a label. The following modal will come up:
+<br>
 <img  src="doc/addLabel.png"></img>
 </details>
 <details>
 <summary>3. Delete label</summary>
 Click here to delete a filter. The following modal will come up:
+<br>
 <img  src="doc/deleteLabel.png"></img>
 </details>
 <details>
 <summary>4. Plus</summary>
 Click here to create a task. The following modal will come up:
+<br>
 <img  src="doc/addTask.png"></img>
 </details>
 <details>
