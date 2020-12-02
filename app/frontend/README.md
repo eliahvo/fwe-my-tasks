@@ -9,8 +9,47 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 
 ### Dashboard
 ![dashboard.png](./doc/dashboard.png "dashboard")
-1. Click here to change the filter. The following modal will come up:
-![filter.png](./doc/filter.png "filter")
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>2. Create label filter</summary>
+Click here to create a label. The following modal will come up:
+<img  src="doc/addLabel.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+<details>
+<summary>1. Change filter</summary>
+Click here to change the filter. The following modal will come up:
+<img  src="doc/filter.png"></img>
+</details>
+
 2. Click here to create a label. The following modal will come up:
 ![addLabel.png](./doc/addLabel.png "add label")
 3. Click here to delete the filter. The following modal will come up:
