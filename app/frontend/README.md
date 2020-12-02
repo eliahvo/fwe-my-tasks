@@ -10,6 +10,7 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 ### Dashboard
 ![dashboard.png](./doc/dashboard.png "dashboard")
 <details>
+<br>
 <summary>1. Change filter</summary>
 Click here to change the filter. The following modal will come up:
 <img  src="doc/filter.png"></img>
