@@ -10,38 +10,47 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 ### Dashboard
 ![dashboard.png](./doc/dashboard.png "dashboard")
 <details>
+<br>
 <summary>1. Change filter</summary>
+<br>
 Click here to change the filter. The following modal will come up:
 <img  src="doc/filter.png"></img>
 </details>
 <details>
+<br>
 <summary>2. Create label</summary>
 Click here to create a label. The following modal will come up:
 <img  src="doc/addLabel.png"></img>
 </details>
 <details>
+<br>
 <summary>3. Delete label</summary>
-Click here to delete the filter. The following modal will come up:
+Click here to delete a filter. The following modal will come up:
 <img  src="doc/deleteLabel.png"></img>
 </details>
 <details>
+<br>
 <summary>4. Plus</summary>
 Click here to create a task. The following modal will come up:
 <img  src="doc/addTask.png"></img>
 </details>
 <details>
+<br>
 <summary>5. Labellist</summary>
 Here are all available labels listed.
 </details>
 <details>
+<br>
 <summary>6. Task item</summary>
 Click here to visit the task detail site.
 </details>
 <details>
+<br>
 <summary>7. Start timer</summary>
 Click here to start a new tracking of a specific task.
 </details>
 <details>
+<br>
 <summary>8. Trash</summary>
 Click here to delete a specific task
 <img  src="doc/filter.png"></img>
