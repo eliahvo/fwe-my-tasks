@@ -50,21 +50,45 @@ Click here to start a new tracking of a specific task.
 Click here to delete a specific task
 <img  src="doc/filter.png"></img>
 </details>
-
+<br>
 
 ### Task detail site
 ![taskDetailSite.png](./doc/taskDetailSite.png "task detail site")
-1. Click here to add a label to the task. The following modal will come up:
-![addLabelToTask.png](./doc/addLabelToTask.png "add label to task")
-2. Click here to delete a label from the task. The following modal will come up:
-![deleteLabelToTask.png](./doc/deleteLabelFromTask.png "delete label to task")
-3. Click here to edit the task. The following modal will come up:
-![editTask.png](./doc/editTask.png "edit task")
-4. Click here to add a tracking to the task. The following modal will come up:
-![addTracking.png](./doc/addTracking.png "add tracking")
-5. Click here to edit a tracking. The following modal will come up:
+<details>
+<summary>1. Add label</summary>
+Click here to add a label to the task. The following modal will come up:
+<br>
+<img  src="doc/addLabelToTask.png"></img>
+</details>
+<details>
+<summary>2. Delete label</summary>
+Click here to delete a label from the task. The following modal will come up:
+<br>
+<img  src="doc/deleteLabelFromTask.png"></img>
+</details>
+<details>
+<summary>3. Edit</summary>
+Click here to edit the task. The following modal will come up:
+<br>
+<img  src="doc/editTask.png"></img>
+</details>
+<details>
+<summary>4. Plus</summary>
+Click here to add a tracking to the task. The following modal will come up:
+<br>
+<img  src="doc/addTracking.png"></img>
+</details>
+<details>
+<summary>5. Edit tracking</summary>
+Click here to edit a tracking. The following modal will come up:
+<br>
 ![editTracking.png](./doc/editTracking.png "edit tracking")
-6. Click here to delete a tracking
+</details>
+<details>
+<summary>6. Task item</summary>
+Click here to delete a tracking
+</details>
+
 
 ## License
 **The MIT License (MIT)**
