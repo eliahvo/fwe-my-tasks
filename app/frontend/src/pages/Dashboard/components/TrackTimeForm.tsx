@@ -29,7 +29,8 @@ interface TrackTimeFormState {
   timeEnd: string;
 }
 
-export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetchTasks : () => void}> = ({
+
+export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetchTasks: () => void }> = ({
   afterSubmit,
   fetchTasks,
   task,
@@ -39,11 +40,13 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
   const [pause, setPause] = useState(false);
   const [stop, setStop] = useState(false);
 
-  const startDate = new Date(values.timeStart);
-
-
-  console.log("startTIme: ", startDate);
-
+  var startDate = new Date(values.timeStart);
+  if (localStorage.getItem("trackingStartDateLS") == "" || localStorage.getItem("trackingStartDateLS") == null) {
+    startDate = new Date();
+    localStorage.setItem("trackingStartDateLS", JSON.stringify(startDate.toString()));
+  } else {
+    startDate = new Date(localStorage.getItem("trackingStartDateLS")!);
+  }
 
   const getDateDifference = function (): string {
     const actualDate = new Date();
@@ -54,25 +57,41 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
 
   const [time, setTime] = useState(getDateDifference());
 
+
+  console.log("pause: ", pause);
+  useEffect(() => {
+    if (localStorage.getItem("trackingPauseLS") == "" || localStorage.getItem("trackingPauseLS") == null) {
+      localStorage.setItem("trackingPauseLS", "false");
+    } else {
+      setPause(localStorage.getItem("trackingPauseLS") == "true" ? true : false);
+    }
+
+    if (!(localStorage.getItem("trackingDescriptionLS") == "" || localStorage.getItem("trackingDescriptionLS") == null)) {
+      values.description = localStorage.getItem("trackingDescriptionLS")!;
+    }
+  }, []);
+
   useEffect(() => {
     //eslint-disable-next-line
     const timer = setTimeout(() => {
       if (!pause) setTime(getDateDifference());
+      else setTime("00:00:00");
     }, 1000);
   });
 
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.name == "description") {
+      localStorage.setItem("trackingDescriptionLS", e.target.value);
+    }
   };
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(pause);
+    console.log("onsubmitformpause: ", pause);
     e.preventDefault();
     values.timeEnd = new Date().toString();
-    console.log("onSubmitForm: ", values);
 
     if (pause || stop) {
-      console.log("post tracking");
       await fetch(`/api/trackings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -83,10 +102,15 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
     }
     if (!stop) {
       if (!pause) {
-        setValues({ description: values.description, timeStart: new Date().toString(), timeEnd: values.timeEnd, taskId: values.taskId });
-        //startDate = new Date(values.timeStart);
+        const startDate = new Date().toString();
+        setValues({ description: values.description, timeStart: startDate, timeEnd: values.timeEnd, taskId: values.taskId });
+        localStorage.setItem("trackingStartDateLS", JSON.stringify(startDate.toString()));
+        localStorage.setItem("trackingPauseLS", "false");
+        console.log("1");
       } else {
         fetchTasks();
+        localStorage.setItem("trackingPauseLS", "true");
+        console.log("2");
       }
     } else {
       afterSubmit();
@@ -103,6 +127,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
           type="text"
           onChange={fieldDidChange}
           required
+          value={localStorage.getItem("trackingDescriptionLS")!}
           autoComplete="off"
         />
         <H2Styled>{time}</H2Styled>
@@ -120,7 +145,6 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
           </svg>
         </RoundedButton>
         <RoundedButton type="submit" onClick={() => {
-          console.log("pause clicked");
           if (values.description !== "") {
             setPause(!pause);
           }

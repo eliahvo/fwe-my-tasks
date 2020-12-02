@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { SmallButton } from "../../../components/SmallButton";
 import { DeleteButton } from "../../../components/DeleteButton";
@@ -177,7 +177,6 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     return msToHMS(ms);
   }
 
-
   return (
     <TaskItemStyle>
       <TaskHighlight />
@@ -205,8 +204,16 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       <div>
         <SmallButton disabled={props.taskId.toString() == taskId || props.taskId.toString() == 0 ? false : true}
           onClick={() => {
-            if (!(props.taskId.toString() == taskId)) onChange({ taskId: taskId, name: name });
-            else onChange({ taskId: 0, name: "" });
+            if (!(props.taskId.toString() == taskId)) {
+              onChange({ taskId: taskId, name: name });
+              localStorage.setItem("currentTaskTimerLS", JSON.stringify({ taskId: taskId, name: name }));
+            } else {
+              onChange({ taskId: 0, name: "" });
+              localStorage.setItem("currentTaskTimerLS", JSON.stringify({ taskId: 0, name: "" }));
+              localStorage.setItem("trackingStartDateLS", "");
+              localStorage.setItem("trackingPauseLS", "false");
+              localStorage.setItem("trackingDescriptionLS", "");
+            }
           }}>{props.taskId.toString() == taskId ? "cancel" : "Start timer"}</SmallButton>
         <DeleteButton onClick={() => {
           onClickDeleteButton();

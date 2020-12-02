@@ -66,6 +66,9 @@ export const DashboardPage = () => {
     console.log("useEffect");
     fetchLabels();
     fetchTasks();
+    if(localStorage.getItem("currentTaskTimerLS")) {
+      setCurrentTaskTimer(JSON.parse(localStorage.getItem("currentTaskTimerLS")!));
+    }
   }, []);
 
 
@@ -194,6 +197,9 @@ export const DashboardPage = () => {
           <TrackTimeForm task={currentTaskTimer} fetchTasks={fetchTasks}
             afterSubmit={() => {
               setCurrentTaskTimer({ taskId: 0, name: "" });
+              localStorage.setItem("currentTaskTimerLS", JSON.stringify({ taskId: 0, name: "" }));
+              localStorage.setItem("trackingStartDateLS", "");
+              localStorage.setItem("trackingDescriptionLS", "");
               fetchTasks();
             }}></TrackTimeForm>
         </StyledFooter>
