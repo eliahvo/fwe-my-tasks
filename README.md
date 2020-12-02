@@ -12,6 +12,11 @@ Start docker container (may take a while until all dependencies have been downlo
 
 * `docker-compose up --build`
 
+## Documenation
+
+* [Backend](backend/README.md)
+* [Frontend](frontend/README.md)
+
 ## License
 **The MIT License (MIT)**
 
