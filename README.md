@@ -14,8 +14,8 @@ Start docker container (may take a while until all dependencies have been downlo
 
 ## Documenation
 
-* [Backend](backend/README.md)
-* [Frontend](frontend/README.md)
+* [Backend](app/backend/README.md)
+* [Frontend](app/frontend/README.md)
 
 ## License
 **The MIT License (MIT)**
