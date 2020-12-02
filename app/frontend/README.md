@@ -15,51 +15,38 @@ Click here to change the filter. The following modal will come up:
 <img  src="doc/filter.png"></img>
 </details>
 <details>
-<summary>2. Create label filter</summary>
+<summary>2. Create label</summary>
 Click here to create a label. The following modal will come up:
 <img  src="doc/addLabel.png"></img>
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
-<img  src="doc/filter.png"></img>
+<summary>3. Delete label</summary>
+Click here to delete the filter. The following modal will come up:
+<img  src="doc/deleteLabel.png"></img>
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
-<img  src="doc/filter.png"></img>
+<summary>4. Plus</summary>
+Click here to create a task. The following modal will come up:
+<img  src="doc/addTask.png"></img>
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
-<img  src="doc/filter.png"></img>
+<summary>5. Labellist</summary>
+Here are all available labels listed.
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
-<img  src="doc/filter.png"></img>
+<summary>6. Task item</summary>
+Click here to visit the task detail site.
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
-<img  src="doc/filter.png"></img>
+<summary>7. Start timer</summary>
+Click here to start a new tracking of a specific task.
 </details>
 <details>
-<summary>1. Change filter</summary>
-Click here to change the filter. The following modal will come up:
+<summary>8. Trash</summary>
+Click here to delete a specific task
 <img  src="doc/filter.png"></img>
 </details>
 
-2. Click here to create a label. The following modal will come up:
-![addLabel.png](./doc/addLabel.png "add label")
-3. Click here to delete the filter. The following modal will come up:
-![deleteLabel.png](./doc/deleteLabel.png "delete label")
-4. Click here to create a task. The following modal will come up:
-![addTask.png](./doc/addTask.png "add task")
-5. Here are all available labels listed.
-6. Click here to visit the task detail site.
-7. Click here to start a new tracking of a specific task.
-8. Click here to delete a specific task
 
 ### Task detail site
 ![taskDetailSite.png](./doc/taskDetailSite.png "task detail site")
