@@ -44,7 +44,7 @@ Click here to visit the task detail site.
 </details>
 <details>
 <summary>7. Start timer</summary>
-Click here to start a new tracking of a specific task.
+Click here to start a new tracking of a specific task. The following dialog will come up:
 <img  src="doc/startTracking.png"></img><br>
 1. Click here to pause/ unpause the tracking<br>
 2. Click here to stop the tracking<br>
