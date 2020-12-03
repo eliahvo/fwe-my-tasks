@@ -4,6 +4,7 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 ## General informations
 
 * Frontend can be reached on http://localhost:80
+* Fixtures can be inserted with `docker-compose exec backend npm run fixtures`
 
 ## Functionality
 
@@ -85,7 +86,7 @@ Click here to edit a tracking. The following modal will come up:
 ![editTracking.png](./doc/editTracking.png "edit tracking")
 </details>
 <details>
-<summary>6. Task item</summary>
+<summary>6. Trash</summary>
 Click here to delete a tracking
 </details>
 
