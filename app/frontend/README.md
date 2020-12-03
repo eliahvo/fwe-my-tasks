@@ -92,6 +92,9 @@ Click here to delete a tracking
 
 ## Test
 
+The frontend tests are based on the react testing library. To execute the frontend tests execute the following command on a command prompt:
+`docker-compose exec frontend npm run test`.<br>
+
 ## License
 **The MIT License (MIT)**
 
