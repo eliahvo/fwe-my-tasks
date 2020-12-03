@@ -163,6 +163,7 @@ export const DashboardPage = () => {
             afterSubmit={() => {
               setDeleteLabelVisible(false);
               fetchLabels();
+              fetchTasks();
             }}
           />
         </Modal>
