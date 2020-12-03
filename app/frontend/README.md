@@ -49,7 +49,6 @@ Click here to start a new tracking of a specific task.
 <details>
 <summary>8. Trash</summary>
 Click here to delete a specific task
-<img  src="doc/filter.png"></img>
 </details>
 <br>
 
@@ -90,7 +89,7 @@ Click here to edit a tracking. The following modal will come up:
 Click here to delete a tracking
 </details>
 
-## Test
+## Testing
 
 The frontend tests are based on the react testing library. To execute the frontend tests execute the following command on a command prompt:
 `docker-compose exec frontend npm run test`.<br>
