@@ -12,6 +12,16 @@ Start docker container (may take a while until all dependencies have been downlo
 
 * `docker-compose up --build`
 
+Sync database through a new command prompt
+
+* `docker-compose exec backend npm run typeorm schema:sync`
+
+Fixtures can be inserted with
+
+* `docker-compose exec backend npm run fixtures`
+
+
+
 ## Documenation
 
 * [Backend](app/backend/README.md)
