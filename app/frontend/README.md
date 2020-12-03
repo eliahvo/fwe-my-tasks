@@ -45,6 +45,9 @@ Click here to visit the task detail site.
 <details>
 <summary>7. Start timer</summary>
 Click here to start a new tracking of a specific task.
+<img  src="doc/startTracking.png"></img>
+1. Click here to pause/ unpause the tracking
+2. Click here to stop the tracking
 </details>
 <details>
 <summary>8. Trash</summary>
