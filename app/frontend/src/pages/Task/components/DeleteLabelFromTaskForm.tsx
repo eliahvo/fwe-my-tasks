@@ -16,6 +16,9 @@ export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: 
     e.preventDefault();
     console.log(values);
 
+    /**
+     * get all labels from database
+     */
     const taskRequest = await fetch("/api/labels", {
       headers: { "Content-Type": "application/json" },
     });

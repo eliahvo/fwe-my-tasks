@@ -16,6 +16,9 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
     e.preventDefault();
     console.log(values);
 
+    /**
+     * get all labels from database
+     */
     const taskRequest = await fetch("/api/labels", {
       headers: { "Content-Type": "application/json" },
     });
@@ -49,8 +52,6 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
         autoComplete="off"
         required
       />
-
-
       <Button type="submit">Add label</Button>
     </form>
   );

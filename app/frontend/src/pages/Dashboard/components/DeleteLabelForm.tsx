@@ -15,6 +15,7 @@ export const DeleteLabelForm: React.FC<{ afterSubmit: () => void}> = ({
     e.preventDefault();
     console.log(values);
 
+    //getting all labels from database
     const taskRequest = await fetch("/api/labels", {
       headers: { "Content-Type": "application/json" },
     });
@@ -45,7 +46,6 @@ export const DeleteLabelForm: React.FC<{ afterSubmit: () => void}> = ({
         autoComplete="off"
         required
       />
-
       <Button type="submit">Delete label</Button>
     </form>
   );

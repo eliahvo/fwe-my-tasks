@@ -46,6 +46,9 @@ export const TaskPage = () => {
   const [deleteLabelToTaskVisible, setDeleteLabelToTaskVisible] = useState(false);
   const [addTrackingVisible, setAddTrackingVisible] = useState(false);
 
+  /**
+   * get a specific task from database
+   */
   const fetchTask = async function () {
     const taskRequest = await fetch(`/api/tasks/${taskId}`, {
       headers: { "content-type": "application/json" },
@@ -57,6 +60,9 @@ export const TaskPage = () => {
     }
   };
 
+  /**
+   * returns date difference from startDate and current date to form "XX:XX:XX" 
+   */
   const getDateDifference = function (): string {
     const ms = task?.__trackings__.reduce((prev: any, cur: any) => {
       const timeStart = new Date(cur.timeStart);

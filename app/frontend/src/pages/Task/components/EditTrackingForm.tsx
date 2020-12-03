@@ -33,6 +33,9 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
     e.preventDefault();
     console.log(values);
 
+    /** 
+     * patch tracking in database
+     */
     await fetch(`/api/trackings/${values.trackingId}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

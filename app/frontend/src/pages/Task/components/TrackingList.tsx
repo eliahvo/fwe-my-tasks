@@ -16,8 +16,6 @@ export type Tracking = {
 };
 
 
-
-
 export const TrackingSpan = styled.span`
   float: left;
   margin-right: 0.5rem;
@@ -96,8 +94,6 @@ export type TrackingItemProps = {
 };
 
 
-
-
 export const TrackingItem: React.FC<TrackingItemProps> = ({
   tracking,
   fetchTask,
@@ -108,6 +104,9 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
   const tStart = new Date(timeStart);
   const tEnd = new Date(timeEnd);
 
+  /** 
+   * delete tracking from database
+   */
   const onClickDeleteButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     await fetch("/api/trackings/" + trackingId, {
@@ -145,9 +144,7 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
             <TrackedTime>Duration: {
               msToHMS(new Date(timeEnd).getTime() - new Date(timeStart).getTime())
             }</TrackedTime>
-
           </div>
-
         </TrackingFlex>
         <div>
           <SmallButton onClick={() => {

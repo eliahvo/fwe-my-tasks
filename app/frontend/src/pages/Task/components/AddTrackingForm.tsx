@@ -30,6 +30,9 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
     e.preventDefault();
     console.log(tracking);
 
+    /** 
+     * post tracking to database
+     */
     await fetch(`/api/trackings`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

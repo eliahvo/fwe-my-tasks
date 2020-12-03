@@ -15,6 +15,7 @@ export const AddLabelForm: React.FC<{ afterSubmit: () => void }> = ({
     e.preventDefault();
     console.log(values);
 
+    //posting new label to database
     await fetch("/api/labels", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,8 +35,6 @@ export const AddLabelForm: React.FC<{ afterSubmit: () => void }> = ({
         autoComplete="off"
         required
       />
-      
-
       <Button type="submit">Add label</Button>
     </form>
   );

@@ -16,9 +16,7 @@ export const App = () => {
         <Switch>
           <Route exact path="/" component={DashboardPage} />
           <Route exact path="/tasks/:taskId" component={TaskPage} />
-
         </Switch>
-
       </ThemeProvider>
     </BrowserRouter>
 

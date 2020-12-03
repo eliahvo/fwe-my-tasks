@@ -24,6 +24,9 @@ export const EditTaskForm: React.FC<{ afterSubmit: () => void; task: Task; }> = 
     e.preventDefault();
     console.log(values);
 
+    /** 
+     * patch task in database
+     */
     await fetch(`/api/tasks/${values.taskId}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

@@ -40,6 +40,9 @@ export const DashboardPage = () => {
   const [filterState, setFilterState] = useState(false);
   const [currentTaskTimer, setCurrentTaskTimer] = useState({ taskId: 0, name: "" });
 
+  /**
+   * getting all tasks from database with filter applied
+   */
   const fetchTasks = async function () {
     console.log("fetching tasks");
     const taskRequest = await fetch(`/api/tasks?labelFilter=${filter.labels}&taskNameFilter=${filter.taskName}&taskDescriptionFilter=${filter.taskDescription}`, {
@@ -51,6 +54,9 @@ export const DashboardPage = () => {
     }
   };
 
+  /**
+   * getting all labels from database
+   */
   const fetchLabels = async function () {
     const taskRequest = await fetch("/api/labels/", {
       method: "GET",
@@ -207,6 +213,16 @@ export const DashboardPage = () => {
     </Layout>
   );
 };
+
+/**
+ * Prints task item
+ * @param history 
+ * @param task 
+ * @param currentTaskTimer 
+ * @param setCurrentTaskTimer 
+ * @param fetchTasks 
+ * @returns task item 
+ */
 function printTaskItem(history: any, task: Task, currentTaskTimer: { taskId: number; name: string; }, setCurrentTaskTimer: React.Dispatch<React.SetStateAction<{ taskId: number; name: string; }>>, fetchTasks: () => Promise<void>): JSX.Element | undefined {
   return (
     <TaskItem onClick={() => {

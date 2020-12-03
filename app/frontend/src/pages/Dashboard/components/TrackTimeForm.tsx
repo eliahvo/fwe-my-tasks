@@ -48,6 +48,9 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
     startDate = new Date(localStorage.getItem("trackingStartDateLS")!);
   }
 
+  /**
+   * returns date difference from startDate and current date to form "XX:XX:XX"
+   */
   const getDateDifference = function (): string {
     const actualDate = new Date();
     const ms = (actualDate.getTime() - startDate.getTime());
@@ -58,7 +61,6 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
   const [time, setTime] = useState(getDateDifference());
 
 
-  console.log("pause: ", pause);
   useEffect(() => {
     if (localStorage.getItem("trackingPauseLS") == "" || localStorage.getItem("trackingPauseLS") == null) {
       localStorage.setItem("trackingPauseLS", "false");

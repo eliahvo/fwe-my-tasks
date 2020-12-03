@@ -12,6 +12,7 @@ export const FilterForm: React.FC<{ afterSubmit: () => void; filter: any; setFil
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+  
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

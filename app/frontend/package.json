@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "PORT=80 react-scripts start",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "build": "react-scripts build"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "@types/styled-components": "^5.1.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "ts-jest": "^26.4.4",
     "typescript": "^3.9.7"
   },

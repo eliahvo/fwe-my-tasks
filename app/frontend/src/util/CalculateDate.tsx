@@ -1,11 +1,8 @@
-
-/*
-function getDifferenceInDays(date1, date2) {
-  const diffInMs = Math.abs(date2 - date1);
-  return diffInMs / (1000 * 60 * 60 * 24);
-}*/
-
-
+/**
+ * convert ms to form "XX:XX:XX"
+ * @param ms 
+ * @returns time in form "XX:XX:XX"
+ */
 export function msToHMS(ms: any) {
   var pad = function (num: number, size: number) { return ('000' + num).slice(size * -1); };
 

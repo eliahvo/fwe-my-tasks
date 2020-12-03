@@ -146,7 +146,16 @@ export type TaskItemProps = {
   fetchTasks: () => void;
   onClick?: (task: Task) => void;
 };
-
+/**
+ * Task item for task list
+ * @param {
+ *   task,
+ *   props,
+ *   onChange,
+ *   fetchTasks,
+ *   onClick = () => { },
+ * }
+ */
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   props,
@@ -157,6 +166,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   const { taskId, name, description, labels, __trackings__ } = task;
 
 
+  /**
+   * deletes task from database
+   */
   const onClickDeleteButton = async function () {
     await fetch("/api/tasks/" + taskId, {
       method: "DELETE",
@@ -166,6 +178,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   };
 
 
+  /**
+   * returns date difference from startDate and current date to form "XX:XX:XX"
+   */
   const getDateDifference = function (): string {
     const ms = __trackings__.reduce((prev: any, cur: any) => {
       const timeStart = new Date(cur.timeStart);

@@ -17,6 +17,7 @@ export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
     e.preventDefault();
     console.log(values);
 
+    //posting new task to database
     await fetch("/api/tasks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
