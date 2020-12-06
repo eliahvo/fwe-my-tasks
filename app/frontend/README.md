@@ -100,9 +100,9 @@ To execute the Unit/ Integration tests execute the following command on a comman
 `docker-compose exec frontend npm run test`.<br>
 
 ### E2E tests
-1. To run the E2E tests you have to navigate to `app/cypress` and run the following command: `npm install`<br>
-2. Secondly you have to delete all task items and labels in the frontend, so that it is totaly clear
-After that you can start cypress using the following command in the `app/cypress` folder: `npm run cypress`<br>
+When you will run your E2E tests the first time you have to navigate to `app/cypress` and run the following command: `npm install`<br>
+1. You have to delete all task items and labels in the frontend, so that it is totaly clear<br>
+2. After that you can start cypress using the following command in the `app/cypress` folder: `npm run cypress`<br>
 The results from the tests should look like this:<br>
 ![e2eTestResults.png](./doc/e2eTestResults.png "E2E test results")
 
