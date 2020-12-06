@@ -58,13 +58,13 @@ export const DashboardPage = () => {
    * getting all labels from database
    */
   const fetchLabels = async function () {
-    const taskRequest = await fetch("/api/labels/", {
+    const labelsRequest = await fetch("/api/labels/", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
-    if (taskRequest.status === 200) {
-      const taskJSON = await taskRequest.json();
-      setLabels(taskJSON.data);
+    if (labelsRequest.status === 200) {
+      const labelsJSON = await labelsRequest.json();
+      setLabels(labelsJSON.data);
     }
   };
 
@@ -117,7 +117,7 @@ export const DashboardPage = () => {
             setDeleteLabelVisible(!deleteLabelVisible);
           }}
           />
-          <AddButton onClick={() => {
+          <AddButton data-testid="add-task-button" onClick={() => {
             setAddTaskVisible(!addTaskVisible);
           }}
           />

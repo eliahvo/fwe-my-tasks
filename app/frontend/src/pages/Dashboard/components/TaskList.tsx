@@ -193,7 +193,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   }
 
   return (
-    <TaskItemStyle>
+    <TaskItemStyle data-testid="task-item">
       <TaskHighlight />
       <TaskFlex onClick={() => {
         onClick(task);
