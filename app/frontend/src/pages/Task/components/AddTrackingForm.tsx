@@ -53,7 +53,7 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
         autoComplete="off"
         required
       />
-      <Button type="submit">Save changes</Button>
+      <Button type="submit" data-testid="addTrackingToTask">Save changes</Button>
     </form>
   );
 };

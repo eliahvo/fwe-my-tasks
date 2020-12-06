@@ -77,7 +77,7 @@ describe('DashboardPage', () => {
 			target: { value: taskResponse.data[0].description },
 		});
 
-		const submit = getByText(taskForm, /add task/i);
+		const submit = getByText(taskForm, /add new task/i);
 		fireEvent.click(submit);
 
 		await findAllByTestId('task-item');

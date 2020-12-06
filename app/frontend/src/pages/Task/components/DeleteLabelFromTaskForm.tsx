@@ -54,7 +54,7 @@ export const DeleteLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: 
       />
 
 
-      <Button type="submit">Delete label</Button>
+      <Button type="submit" data-testid="deleteLabelToTask">Delete label</Button>
     </form>
   );
 };

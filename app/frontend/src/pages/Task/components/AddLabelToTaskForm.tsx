@@ -52,7 +52,7 @@ export const AddLabelToTaskForm: React.FC<{ afterSubmit: () => void, taskId: str
         autoComplete="off"
         required
       />
-      <Button type="submit">Add label</Button>
+      <Button type="submit" data-testid="addLabelToTask">Add label</Button>
     </form>
   );
 };

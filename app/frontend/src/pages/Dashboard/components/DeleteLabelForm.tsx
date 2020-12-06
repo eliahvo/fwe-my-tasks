@@ -46,7 +46,7 @@ export const DeleteLabelForm: React.FC<{ afterSubmit: () => void}> = ({
         autoComplete="off"
         required
       />
-      <Button type="submit">Delete label</Button>
+      <Button type="submit" data-testid="deleteLabel">Delete label</Button>
     </form>
   );
 };

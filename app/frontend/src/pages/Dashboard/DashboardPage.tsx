@@ -105,15 +105,15 @@ export const DashboardPage = () => {
             align-items: top;
           `}
         >
-          <RoundButton name="Change filter" onClick={() => {
+          <RoundButton name="Change filter" data-testid="filter-task-button" onClick={() => {
             setFilterState(!filterState);
           }}
           />
-          <RoundButton name="Create label" onClick={() => {
+          <RoundButton name="Create label" data-testid="add-label-button" onClick={() => {
             setAddLabelVisible(!addLabelVisible);
           }}
           />
-          <RoundButton name="Delete label" onClick={() => {
+          <RoundButton name="Delete label" data-testid="delete-label-button" onClick={() => {
             setDeleteLabelVisible(!deleteLabelVisible);
           }}
           />
@@ -185,7 +185,7 @@ export const DashboardPage = () => {
       )}
 
       <ShowLabelsStyled>
-        <LabelList>
+        <LabelList data-testid="all-label-list">
           {labels &&
             labels.map((label: Label) => {
               return <li key={label.labelId}>{label.name}</li>;
@@ -193,7 +193,7 @@ export const DashboardPage = () => {
         </LabelList>
       </ShowLabelsStyled>
 
-      <TaskList>
+      <TaskList data-testid="task-list">
         {tasks.map((task) => {
           return printTaskItem(history, task, currentTaskTimer, setCurrentTaskTimer, fetchTasks)
         })}

@@ -45,7 +45,7 @@ export const AddTaskForm: React.FC<{ afterSubmit: () => void }> = ({
         autoComplete="off"
         required
       />
-      <Button type="submit">Add task</Button>
+      <Button type="submit">Add new task</Button>
     </form>
   );
 };

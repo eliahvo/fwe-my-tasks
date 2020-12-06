@@ -93,9 +93,19 @@ Click here to delete a tracking
 </details>
 
 ## Testing
+The frontend tests are based on the react testing library.
 
-The frontend tests are based on the react testing library. To execute the frontend tests execute the following command on a command prompt:
+# Unit/ Integration tests 
+To execute the Unit/ Integration tests execute the following command on a command prompt:<br>
 `docker-compose exec frontend npm run test`.<br>
+
+# E2E tests
+To run the E2E tests you have to navigate to `app/cypress` and run the following command:<br>
+`npm install`<br>
+That can take a while and after that you can start cypress using the following command in the `app/cypress` folder:<br>
+`npm run cypress`<br>
+The results from the tests should look like this:
+![e2eTestResults.png](./doc/e2eTestResults.png "E2E test results")
 
 ## License
 **The MIT License (MIT)**

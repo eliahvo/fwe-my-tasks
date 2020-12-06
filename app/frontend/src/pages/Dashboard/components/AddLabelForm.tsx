@@ -35,7 +35,7 @@ export const AddLabelForm: React.FC<{ afterSubmit: () => void }> = ({
         autoComplete="off"
         required
       />
-      <Button type="submit">Add label</Button>
+      <Button type="submit" data-testid="addLabel">Add label</Button>
     </form>
   );
 };

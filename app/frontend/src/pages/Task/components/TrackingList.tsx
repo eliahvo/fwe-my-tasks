@@ -36,7 +36,7 @@ export const TrackingHighlight = styled.span`
   background-color: ${(props) => props.theme.colors.primary};
 `;
 
-export const TrackingItemStyle = styled.div`
+export const TrackingItemStyle = styled.li`
   margin: 0;
   min-height: 9rem;
   position: relative;
@@ -151,7 +151,7 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
             setEditTrackingVisible(!editTrackingVisible);
           }}
           >Edit tracking</SmallButton>
-          <DeleteButton onClick={onClickDeleteButton}>Delete task</DeleteButton>
+          <DeleteButton data-testid={"delete-tracking-button" + tracking.description} onClick={onClickDeleteButton}>Delete task</DeleteButton>
         </div>
       </TrackingItemStyle>
     </div>

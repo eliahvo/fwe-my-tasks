@@ -72,7 +72,7 @@ export const TaskHighlight = styled.span`
   background-color: ${(props) => props.theme.colors.primary};
 `;
 
-export const TaskItemStyle = styled.div`
+export const TaskItemStyle = styled.li`
   margin: 0;
   min-height: 9rem;
   position: relative;
@@ -193,9 +193,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   }
 
   return (
-    <TaskItemStyle data-testid="task-item">
+    <TaskItemStyle data-testid={"task-item" + task.name}>
       <TaskHighlight />
-      <TaskFlex onClick={() => {
+      <TaskFlex data-testid={"task-onClick" + task.name} onClick={() => {
         onClick(task);
       }}>
         <div>
@@ -230,7 +230,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               localStorage.setItem("trackingDescriptionLS", "");
             }
           }}>{props.taskId.toString() == taskId ? "cancel" : "Start timer"}</SmallButton>
-        <DeleteButton onClick={() => {
+        <DeleteButton data-testid={"delete-task-button" + task.name} onClick={() => {
           onClickDeleteButton();
         }}>Delete task</DeleteButton>
       </div>

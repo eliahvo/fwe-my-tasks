@@ -101,15 +101,15 @@ export const TaskPage = () => {
             align-items: top;
           `}
         >
-          <RoundButton name="Add label" onClick={() => {
+          <RoundButton name="Add label" data-testid="add-label-toTask-button" onClick={() => {
             setAddLabelToTaskVisible(!addLabelToTaskVisible);
           }}
           />
-          <RoundButton name="Delete label" onClick={() => {
+          <RoundButton name="Delete label" data-testid="delete-label-fromTask-button" onClick={() => {
             setDeleteLabelToTaskVisible(!deleteLabelToTaskVisible);
           }}
           />
-          <EditButton onClick={() => {
+          <EditButton data-testid="edit-task-button" onClick={() => {
             setEditTaskVisible(!editTaskVisible);
           }}
           />
@@ -167,7 +167,7 @@ export const TaskPage = () => {
               <TaskDescription>{task?.description}</TaskDescription>
               <Label>
                 <LabelsSpan>Labels:</LabelsSpan>
-                <LabelList>
+                <LabelList data-testid="all-labelsFromTask-list">
                   {task?.labels &&
                     task?.labels.map((label: Label) => {
                       return <li key={label.labelId}>{label.name}</li>;
@@ -201,7 +201,7 @@ export const TaskPage = () => {
             align-items: top;
           `}
           >
-            <AddButton onClick={() => {
+            <AddButton data-testid="add-tracking-toTask-button" onClick={() => {
               setAddTrackingVisible(!addTrackingVisible);
             }}
             />
@@ -222,7 +222,7 @@ export const TaskPage = () => {
           />
         </Modal>
       )}
-        <TaskList>
+        <TaskList data-testid="tracking-list">
           {task?.__trackings__.map((tracking) => (
             <TrackingItem tracking={tracking} fetchTask={fetchTask}></TrackingItem>
           ))}

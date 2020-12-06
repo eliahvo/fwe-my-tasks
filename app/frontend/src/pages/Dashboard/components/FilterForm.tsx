@@ -43,7 +43,7 @@ export const FilterForm: React.FC<{ afterSubmit: () => void; filter: any; setFil
         onChange={fieldDidChange}
         autoComplete="off"
       />
-      <Button type="submit">Save changes</Button>
+      <Button type="submit">Save filter</Button>
     </form>
   );
 };
