@@ -104,7 +104,7 @@ To run the E2E tests you have to navigate to `app/cypress` and run the following
 `npm install`<br>
 That can take a while and after that you can start cypress using the following command in the `app/cypress` folder:<br>
 `npm run cypress`<br>
-The results from the tests should look like this:
+The results from the tests should look like this:<br>
 ![e2eTestResults.png](./doc/e2eTestResults.png "E2E test results")
 
 ## License
