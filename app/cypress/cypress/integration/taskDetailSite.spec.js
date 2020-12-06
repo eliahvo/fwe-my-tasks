@@ -37,13 +37,26 @@ describe("Task detail page", () => {
     cy.screenshot();
   });
 
-  it("can delete label to task", () => {
+  it("can delete label from task", () => {
     cy.screenshot();
     
     cy.findByTestId(/delete-label-fromTask-button/i).click();
     cy.findByLabelText(/name/i).type(label.name);
-    cy.findByTestId("deleteLabelToTask").click();
+    cy.findByTestId("deleteLabelFromTask").click();
     cy.findByTestId("all-labelsFromTask-list").find("li").should("have.length", 0);
+
+    cy.screenshot();
+  });
+
+  it("can edit a task", () => {
+    cy.screenshot();
+    
+    const newDescription = "New Name";
+
+    cy.findByTestId(/edit-task-button/i).click();
+    cy.findByLabelText(/description/i).type(newDescription);
+    cy.findByTestId("editTask").click();
+    cy.findByTestId("task-description").contains(newDescription);
 
     cy.screenshot();
   });
@@ -59,10 +72,21 @@ describe("Task detail page", () => {
     cy.screenshot();
   });
 
+  it("can edit a tracking", () => {
+    cy.screenshot();
+    
+    cy.findByTestId("edit-tracking-button" + tracking.description).click();
+    cy.findByLabelText(/Time start/i).type(new Date().toString());
+    cy.findByTestId("editTracking").click();
+    cy.findByTestId("tracking-list").find("li").should("have.length", 1);
+
+    cy.screenshot();
+  });
+
   it("can delete a tracking from task", () => {
     cy.screenshot();
     
-    cy.findByTestId(/delete-tracking-button/i).click();
+    cy.findByTestId("delete-tracking-button" + tracking.description).click();
     cy.findByTestId("tracking-list").find("li").should("have.length", 0);
 
     cy.screenshot();

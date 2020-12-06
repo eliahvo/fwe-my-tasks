@@ -20,13 +20,27 @@ describe("DashboardPage", () => {
     cy.screenshot();
   });
 
+  // it("can start timer of a task", () => {
+  //   cy.visit("/");
+  //   cy.screenshot();
+  //   const description = "Description";
+
+  //   cy.findByTestId("start-timer-button" + task.name).click();
+  //   cy.wait(1000);
+  //   cy.findByLabelText("What do you do?").type(description);
+  //   cy.wait(1000);
+
+  //   cy.findByTestId("stop-button").click();
+  //   cy.findByTestId("task-list").find("li").should("have.length", 1);
+  // });
+
   it("can filter tasks", () => {
     cy.visit("/");
     cy.screenshot();
     cy.findByTestId(/filter-task-button/i).click();
     cy.findByLabelText(/task name/i).type(task.name);
 
-    cy.findByText("Save filter").click();
+    cy.findByTestId("saveFilter").click();
     cy.findByTestId("task-list").find("li").should("have.length", 1);
   });
 

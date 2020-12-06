@@ -133,7 +133,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
           autoComplete="off"
         />
         <H2Styled>{time}</H2Styled>
-        <RoundedButton type="submit" disabled={pause} onClick={() => {
+        <RoundedButton data-testid="stop-button" type="submit" disabled={pause} onClick={() => {
           if (values.description !== "") {
             setStop(true);
           }

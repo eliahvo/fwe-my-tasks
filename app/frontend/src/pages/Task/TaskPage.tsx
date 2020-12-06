@@ -164,7 +164,7 @@ export const TaskPage = () => {
         <TaskItemStyle>
           <TaskFlex>
             <div>
-              <TaskDescription>{task?.description}</TaskDescription>
+              <TaskDescription data-testid="task-description">{task?.description}</TaskDescription>
               <Label>
                 <LabelsSpan>Labels:</LabelsSpan>
                 <LabelList data-testid="all-labelsFromTask-list">

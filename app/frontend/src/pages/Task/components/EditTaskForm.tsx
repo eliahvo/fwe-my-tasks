@@ -57,7 +57,7 @@ export const EditTaskForm: React.FC<{ afterSubmit: () => void; task: Task; }> = 
         autoComplete="off"
         required
       />
-      <Button type="submit">Save changes</Button>
+      <Button type="submit" data-testid="editTask">Save changes</Button>
     </form>
   );
 };

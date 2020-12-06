@@ -76,7 +76,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
         autoComplete="off"
         required
       />
-      <Button type="submit">Save changes</Button>
+      <Button type="submit" data-testid="editTracking">Save changes</Button>
     </form>
   );
 };

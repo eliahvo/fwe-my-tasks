@@ -147,7 +147,7 @@ export const TrackingItem: React.FC<TrackingItemProps> = ({
           </div>
         </TrackingFlex>
         <div>
-          <SmallButton onClick={() => {
+          <SmallButton data-testid={"edit-tracking-button" + tracking.description} onClick={() => {
             setEditTrackingVisible(!editTrackingVisible);
           }}
           >Edit tracking</SmallButton>
