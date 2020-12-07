@@ -8,7 +8,7 @@ Create .env file
 * Linux: `cp .env.example .env`
 * Windows: `copy .env.example .env`
 
-Start docker container (may take a while until all dependencies have been downloaded (in my last test it took about 4 minutes))
+Start docker container (may take a while until all dependencies have been downloaded (in my last test it took about 7 minutes for backend and frontend))
 
 * `docker-compose up --build`
 
