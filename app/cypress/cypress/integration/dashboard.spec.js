@@ -20,19 +20,21 @@ describe("DashboardPage", () => {
     cy.screenshot();
   });
 
-  // it("can start timer of a task", () => {
-  //   cy.visit("/");
-  //   cy.screenshot();
-  //   const description = "Description";
+  it("can start timer of a task", () => {
+    cy.visit("/");
+    cy.screenshot();
+    const description = "Description";
 
-  //   cy.findByTestId("start-timer-button" + task.name).click();
-  //   cy.wait(1000);
-  //   cy.findByLabelText("What do you do?").type(description);
-  //   cy.wait(1000);
+    cy.findByTestId("start-timer-button" + task.name).click();
+    cy.findByTestId("time-tracker-description-input").then(($input) => {
+      $input.val(description);
+    });
+    cy.wait(1000);
 
-  //   cy.findByTestId("stop-button").click();
-  //   cy.findByTestId("task-list").find("li").should("have.length", 1);
-  // });
+    cy.findByTestId("stop-button").click();
+    cy.findByTestId("task-list").find("li").should("have.length", 1);
+    cy.screenshot();
+  });
 
   it("can filter tasks", () => {
     cy.visit("/");
@@ -42,6 +44,7 @@ describe("DashboardPage", () => {
 
     cy.findByTestId("saveFilter").click();
     cy.findByTestId("task-list").find("li").should("have.length", 1);
+    cy.screenshot();
   });
 
   it("can delete a new task", () => {

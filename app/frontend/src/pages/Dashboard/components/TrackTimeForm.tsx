@@ -124,6 +124,7 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
       <form onSubmit={onSubmitForm}>
         <H2Styled>{task.name}</H2Styled>
         <FloatedInput
+          data-testid="time-tracker-description-input"
           name="description"
           label="What do you do?"
           type="text"
