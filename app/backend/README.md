@@ -71,7 +71,7 @@ Project can also be tested through programs like `postman`.
 
 ## Freestyle task
 
-In the freestyle task I developed the possibility to get all tasks through a telegram bot which I created. For that I used an api called [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api). First you have to load the fixtures, so that the bot can access the data from database. To get in touch with the bot you need to search in the telegram app for `fweTaskBot` or click the following link: `t.me/FWETASKbot`.<br>
+In the freestyle task I developed the possibility to get all tasks through a telegram bot which I created. For that I used an api called [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api). First you have to load the fixtures, so that the bot can access the data from database. To get in touch with the bot you need to search in the telegram app for `fweTaskBot` or click the following link: [t.me/FWETASKbot](https://t.me/FWETASKbot).<br>
 Now you can get your tasks by typing `/tasks` as a message to the bot. In the background the bot will obtain all tasks from the database and then it will send you each task in a seperate message.
 
 ### Example
