@@ -81,10 +81,16 @@ export const TrackTimeForm: React.FC<{ afterSubmit: () => void; task: any; fetch
     }, 1000);
   });
 
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-    if (e.target.name == "description") {
-      localStorage.setItem("trackingDescriptionLS", e.target.value);
+    if (format.test(e.target.value)) {
+      alert("special character are not allowed!");
+      e.target.value = "";
+    } else {
+      setValues({ ...values, [e.target.name]: e.target.value });
+      if (e.target.name == "description") {
+        localStorage.setItem("trackingDescriptionLS", e.target.value);
+      }
     }
   };
 

@@ -8,8 +8,15 @@ export const AddLabelForm: React.FC<{ afterSubmit: () => void }> = ({
   const [values, setValues] = useState({
     name: "",
   });
+  
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    if (format.test(e.target.value)) {
+      alert("special character are not allowed!");
+      e.target.value = "";
+    } else {
+      setValues({ ...values, [e.target.name]: e.target.value });
+    }
   };
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -22,10 +22,16 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
     timeEnd: new Date().toString(),
   });
 
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTracking({ ...tracking, [e.target.name]: e.target.value });
+    if (format.test(e.target.value)) {
+      alert("special character are not allowed!");
+      e.target.value = "";
+    } else {
+      setTracking({ ...tracking, [e.target.name]: e.target.value });
+    }
   };
-  
+
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(tracking);
@@ -42,7 +48,7 @@ export const AddTrackingForm: React.FC<{ afterSubmit: () => void; task: Task; }>
     });
     afterSubmit();
   };
-  
+
   return (
     <form onSubmit={onSubmitForm}>
       <Input

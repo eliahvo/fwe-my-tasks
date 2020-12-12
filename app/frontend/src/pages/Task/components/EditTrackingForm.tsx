@@ -18,6 +18,7 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
 
   const [values, setValues] = useState<EditTrackingFormState>(tracking);
 
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
     //check if datetype is valid
     if (e.target.name === "timeStart" || e.target.name === "timeEnd") {
@@ -25,8 +26,15 @@ export const EditTrackingForm: React.FC<{ afterSubmit: () => void; tracking: Tra
       if(!isNaN(date.getTime())) {
         
       }
+      setValues({ ...values, [e.target.name]: e.target.value });
+    } else {
+      if (format.test(e.target.value)) {
+        alert("special character are not allowed!");
+        e.target.value = "";
+      } else {
+        setValues({ ...values, [e.target.name]: e.target.value });
+      }
     }
-    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {

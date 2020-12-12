@@ -16,8 +16,14 @@ export const EditTaskForm: React.FC<{ afterSubmit: () => void; task: Task; }> = 
   
   const [values, setValues] = useState<EditTaskFormState>(task);
 
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
   const fieldDidChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    if (format.test(e.target.value)) {
+      alert("special character are not allowed!");
+      e.target.value = "";
+    } else {
+      setValues({ ...values, [e.target.name]: e.target.value });
+    }
   };
   
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
