@@ -15,12 +15,12 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 | Route          | Method       | Body          | Description  |
 | :------------- | :----------  | :-----------  | :----------- |
 | `/`            |   GET        |  -   | returns all tasks |
-| `/`            |   POST       |   { name: 'demotask', <br>description: 'demo description'}  | creates a new task |
+| `/`            |   POST       |   {"name": "demotask", <br>"description": "demo description"}  | creates a new task |
 | `/:taskId`     |   GET        |  -   | returns a specific task where taskId = `:taskId`|
 | `/:taskId`     |   DELETE     |  -   | deletes specific task where taskId = `:taskId`|
-| `/:taskId`     |   PATCH      |   { name: 'new name', <br>description: 'new description'}  | updates specific task where taskId = `:taskId` |
-| `/:taskId/labels`     |   POST      |  { labelIdList: [1, 2, ...] }  | adds labels to task where taskId = `:taskId` |
-| `/:taskId/labels`     |   DELETE      |  { labelIdList: [1, 2, ...] }  | deletes labels from task where taskId = `:taskId` |
+| `/:taskId`     |   PATCH      |   {"name": "new name", <br>"description": "new description"}  | updates specific task where taskId = `:taskId` |
+| `/:taskId/labels`     |   POST      |  {"labelIdList": [1, 2, ...] }  | adds labels to task where taskId = `:taskId` |
+| `/:taskId/labels`     |   DELETE      |  {"labelIdList": [1, 2, ...] }  | deletes labels from task where taskId = `:taskId` |
 | `/:taskId/labels`     |   GET      |  -  | returns all associated labels from task where taskId = `:taskId` |
 | `/:taskId/trackings`     |   GET      |   -  | returns all associated trackings from task where taskId = `:taskId` |
 
@@ -29,10 +29,10 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 | Route          | Method       | Body          | Description  |
 | :------------- | :----------  | :-----------  | :----------- |
 | `/`            |   GET        |  -   | returns all labels |
-| `/`            |   POST       |  { name: 'demolabel' }  | creates a new label |
+| `/`            |   POST       |  {"name": "demolabel"}  | creates a new label |
 | `/:labelId`     |   GET        |  -   | returns a specific label where labelId = `:labelId`|
 | `/:labelId`     |   DELETE     |  -   | deletes a specific label where labelId = `:labelId`|
-| `/:labelId`     |   PATCH      |  { name: 'demolabel' }   | updates a specific label where labelId = `:labelId` |
+| `/:labelId`     |   PATCH      |  {"name": "demolabel"}   | updates a specific label where labelId = `:labelId` |
 | `/:labelId/tasks`     |   POST      |    | returns all tasks from label where labelId = `:labelId` |
 
 ## `/trackings`
@@ -40,10 +40,10 @@ As part of the course 'Fortgeschrittene Webentwicklung' we had to create a timet
 | Route          | Method       | Body          | Description  |
 | :------------- | :----------  | :-----------  | :----------- |
 | `/`            |   GET        |  -   | returns all trackings |
-| `/`            |   POST       |  { description: 'demo description', <br>taskId: 1 } | creates a new tracking |
+| `/`            |   POST       |  { "description": "demo description", <br>"taskId": 1 } | creates a new tracking |
 | `/:trackingId`     |   GET        |  -   | returns a specific tracking where trackingId = `:trackingId`|
 | `/:trackingId`     |   DELETE     |  -   | deletes a specific tracking where trackingId = `:trackingId`|
-| `/:trackingId`     |   PATCH      |  { description: 'new description',<br>startTime: timestamp, <br>endTime: timestamp }   | updates a specific tracking where trackingId = `:trackingId` |
+| `/:trackingId`     |   PATCH      |  { "description": "new description",<br>"startTime": timestamp, <br>"endTime": timestamp }   | updates a specific tracking where trackingId = `:trackingId` |
 
 ## Examples
 
