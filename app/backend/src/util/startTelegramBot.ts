@@ -8,7 +8,7 @@ var bot;
  */
 export const startTelegramBot = async () => {
   var TelegramBot = require('node-telegram-bot-api');
-  var token = '1420935277:AAFfukGUUrIcx_Z27KJdSRH_e35Z-eafUHg';
+  var token = ''; //token is empty cause of security issues
   var opt = { polling: true };
 
   bot = new TelegramBot(token, opt);
